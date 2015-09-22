@@ -1,0 +1,141 @@
+/* make our pages be full width and full height */
+/* positioned absolutely so that the pages can overlap each other as they enter and leave */
+.page        {
+    bottom:0; 
+    padding-top:200px;
+    position:relative; 
+    text-align:center;
+    top:0;  
+    width:100%; 
+    
+}
+
+.page h1    { font-size:50px; font-family: 'Lobster', cursive; }
+.signature    { font-family: 'Shadows Into Light', cursive;}
+.page h3    { font-family: 'Kaushan Script', cursive;}
+.page h5    { font-family: 'Lato', sans-serif;}
+.page a     { margin-top:50px; }
+.page p{
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-default {
+    background-color:#2C3E50;
+    border-color: #FFFFFF;
+    color: #FFFFFF
+}
+.navbar-default .navbar-brand{
+    color:#FFFFFF;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus{
+    color:#18BC9C;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav >li >a{
+    color:#FFFFFF;
+}
+.navbar-default .navbar-nav >li >a:hover,
+.navbar-default .navbar-nav >li >a:focus{
+    color:#18BC9C;
+}
+.navbar-default .navbar-nav >.active >a,
+.navbar-default .navbar-nav >.active >a:hover,
+.navbar-default .navbar-nav >.active >a:focus,
+{
+    color:#FFFFFF;
+    background-color: #1A242F;
+}
+
+/* PAGES (specific colors for each page)
+============================================================================= */
+.page-home      { background:#00D0BC; color:#00907c; }
+.page-team     { background:#E59400; color:#1F1307; }
+.page-contact   { background:#ffa6bb; color:#9e0000; }
+
+.ng-enter       { z-index: 8888; }
+.ng-leave       { z-index: 9999; }
+
+
+.navbar-text > a {
+    color:inherit;
+    text-decoration: none;
+}
+
+.thumbnail{
+    background-color: #E59400;
+}
+.thumbnail img:hover{
+    transform: scale(1.1);
+}
+.thumbnail img{
+    transition:all 0.3s ease 0s;
+
+}
+.thumbnail{
+    overflow: hidden;
+}
+
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 70%;
+  margin: auto;
+}
+
+
+
+ /* page specific animations ------------------------ */
+
+    /* home -------------------------- */
+    .page-home.ng-enter         { animation: scaleUp 0.5s both ease-in; }
+    .page-home.ng-leave         { transform-origin: 50% 50%; animation: rotateFall 1s both ease-in; }
+
+    /* team ------------------------ */
+    .page-team.ng-enter        { transform-origin: 50% 50%; animation: scaleUp .5s both ease-in; }
+    .page-team.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }
+
+    /* contact ---------------------- */
+    .page-contact.ng-leave      { transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; }
+    .page-contact.ng-enter      { animation:slideInUp 0.5s both ease-in; }
+
+
+/* ANIMATIONS
+============================================================================= */
+
+/* leaving animations ----------------------------------------- */
+/* rotate and fall */
+@keyframes rotateFall {
+    0%      { transform: rotateZ(0deg); }
+    20%     { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+    40%     { transform: rotateZ(17deg); }
+    60%     { transform: rotateZ(16deg); }
+    100%    { transform: translateY(100%) rotateZ(17deg); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-100%); }
+}
+
+/* rotate out newspaper */
+@keyframes rotateOutNewspaper {
+    to      { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+
+/* entering animations --------------------------------------- */
+/* scale up */
+@keyframes scaleUp {
+    from    { opacity: 0.3; -webkit-transform: scale(0.8); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}

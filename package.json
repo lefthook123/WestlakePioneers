@@ -1,7 +1,6 @@
 {
   "name": "westlakepioneers",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "express": "^4.13.3"
@@ -11,11 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-  },
-  "author": "",
+  "repository": {},
+  "author": "Zhan Wang",
   "license": "ISC",
-  "bugs": {
-  },
-  "homepage":
+  "description": ""
 }
+//3461fc09-9243-41d9-a2c0-6bff4e00a266

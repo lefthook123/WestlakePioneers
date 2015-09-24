@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "nodemailer": "^1.4.0",
+    "sweetcaptcha": "0.0.2-1"
   },
   "devDependencies": {},
   "scripts": {

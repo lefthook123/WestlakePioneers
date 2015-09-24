@@ -1,6 +1,18 @@
 var express = require("express");
 var app = express();
 
+var sweetcaptcha = new require('sweetcaptcha')(appId, appKey, appSecret);
+
+app.get('/', function(req, res){
+	//get sweetcaptcha html for the contact area
+	sweetcaptcha.api('get_html', function(err,html){
+		//Send the guts of the captcha to your template
+		res.render('main', { captcha : html });
+	});
+});
+
+
+
 app.use(express.static(__dirname + "/public"));
 //app.use('/js', express.static(__dirname + '/public/js'));
 //app.use('/dist', express.static(__dirname + '/../dist'));

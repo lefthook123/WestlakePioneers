@@ -92,7 +92,7 @@ app.controller('blogsController',function($scope){
             title:'Welcome to Westlake Pioneers',
             body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
             pictures:[
-                {style:'width:100px;height:100px;',path:'images/Welcome.jpg',name:'welcome'}
+                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
             ],
             reviews:[
                 {
@@ -111,7 +111,7 @@ app.controller('blogsController',function($scope){
             title:'Welcome to Westlake Pioneers',
             body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
             pictures:[
-                {style:'width:100px;height:100px;',path:'images/Welcome.jpg',name:'welcome'}
+                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
             ],
             reviews:[
                 {

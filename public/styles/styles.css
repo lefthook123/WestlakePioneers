@@ -40,7 +40,7 @@
 }
 .navbar-default .navbar-nav >.active >a,
 .navbar-default .navbar-nav >.active >a:hover,
-.navbar-default .navbar-nav >.active >a:focus,
+.navbar-default .navbar-nav >.active >a:focus
 {
     color:#FFFFFF;
     background-color: #1A242F;
@@ -50,6 +50,7 @@
 ============================================================================= */
 .page-home      { background:#00D0BC; color:#00907c; }
 .page-team     { background:#E59400; color:#1F1307; }
+.page-blogs     { background:#E59400; color:#1F1307; }
 .page-contact   { background:#ffa6bb; color:#9e0000; }
 
 .ng-enter       { z-index: 8888; }

@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<div ng-repeat="article in articles">
+				<h3>{{article.title}}</h3>
+				<div ng-repeat="picture in article.pictures">
+					<div style="width:100%;height:100%;">
+						<img style="width:100%" ng-src={{picture.path}} alt={{picture.name}}>
+					</div>
+				</div>
+				<div>
+				<div>Author:{{article.author}}</div><div>Posted Time:{{article.posttime}}</div>
+				</div>
+				<p style="text-align:left;">{{article.body}}</p>
+				<div id="review">
+					<h5>Replies</h5>
+					<div ng-repeat="review in article.reviews">
+						<div>
+							<div>{{review.author}}</div><div>{{review.posttime}}</div>
+							<p>{{review.body}}</p>
+							<div ng-repeat="reply in review.replies">
+								<div>
+									<div>{{reply.author}}</div><div>{{reply.posttime}}</div>
+									<p>{{reply.body}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

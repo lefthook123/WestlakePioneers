@@ -17,6 +17,11 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
         	url: '/paragraph',
         	template: 'I could sure use a drink right now.'
     	})
+        .state('blogs', {
+            url: '/blogs',
+            templateUrl: 'template/partial-blogs.html',
+            controller:'blogsController'
+        })
     	.state('team', {
             url: '/team',
             templateUrl: 'template/partial-team.html',
@@ -78,8 +83,55 @@ app.controller('mainController',function($scope){
         description:['Targeted List Development','Predictive Modeling','CRM Development / Customization']},
     ];
 });
+app.controller('blogsController',function($scope){
+	$scope.pageClass = 'page-blogs';
+
+    $scope.articles= [
+       
+        {
+            title:'Welcome to Westlake Pioneers',
+            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
+            pictures:[
+                {style:'width:100px;height:100px;',path:'images/Welcome.jpg',name:'welcome'}
+            ],
+            reviews:[
+                {
+                    author:'Jack Wang',posttime:'',
+                    body:'I will keep track of your blog!',
+                    replies:[
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
+
+                    ]
+                }
+            ],
+            posttime:'',
+            author:'Jack Wang'
+        },
+        {
+            title:'Welcome to Westlake Pioneers',
+            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
+            pictures:[
+                {style:'width:100px;height:100px;',path:'images/Welcome.jpg',name:'welcome'}
+            ],
+            reviews:[
+                {
+                    author:'Jack Wang',posttime:'',
+                    body:'I will keep track of your blog!',
+                    replies:[
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
+
+                    ]
+                }
+            ],
+            posttime:'',
+            author:'Jack Wang'
+        }
+      
+    ];
+
+});
 app.controller('teamController',function($scope){
-	$scope.pageClass = 'page-team';
+    $scope.pageClass = 'page-team';
 
     $scope.managers= [
        
@@ -112,6 +164,6 @@ app.controller('aboutController',function($scope){
 });
 
 app.controller('contactController',function($scope){
-	$scope.message = 'Contact us! JK. This is just a demo.';
 	$scope.pageClass = 'page-contact';
+
 });

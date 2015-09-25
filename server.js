@@ -17,7 +17,15 @@ app.get('/retrieveblogs', function(req, res){
                     author:'Jack Wang',posttime:'',
                     body:'I will keep track of your blog!',
                     replies:[
-                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'},
+                        {author:'Cindy',posttime:'',body:'I want to join!'}
+                    ]
+                },
+                {
+                    author:'James Lemon',posttime:'',
+                    body:'Come on!',
+                    replies:[
+                        {author:'Jack Wang',posttime:'',body:'I will!'}
                     ]
                 }
             ],

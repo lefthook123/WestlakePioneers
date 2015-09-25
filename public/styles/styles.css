@@ -46,6 +46,46 @@
     background-color: #1A242F;
 }
 
+
+
+.page-blogs #CommentsAuthor{
+    color:blue;
+    padding: 50px;
+}
+.page-blogs #CommentsPT{
+    color:grey;
+    padding: 50px;
+}
+.page-blogs #CommentsNum{
+    color:grey;
+    padding-top: 10px;
+}
+.page-blogs .well {
+    background: #FF9900;
+}
+
+.page-blogs .blogbody{
+    text-align: left;
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.page-blogs .commentsbody{
+    text-align: left;
+    background-color: #FFFFFF;
+}
+
+.page-blogs p{
+    margin:0 0 30px;
+}
+.page-blogs span{
+    margin-right: 10px;
+}
+
+.page-blogs #replies{
+    padding-left: 20px;
+}
 /* PAGES (specific colors for each page)
 ============================================================================= */
 .page-home      { background:#00D0BC; color:#00907c; }

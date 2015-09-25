@@ -52,7 +52,6 @@ app.controller('mainController',function($scope){
 	$scope.message = 'Everyone come and see how good I look!';
 	$scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
 	$scope.pageClass = 'page-home';
-
     $scope.carousels = [
         {
             name : '',
@@ -83,66 +82,21 @@ app.controller('mainController',function($scope){
         description:['Targeted List Development','Predictive Modeling','CRM Development / Customization']},
     ];
 });
-app.controller('blogsController',function($scope){
-	$scope.pageClass = 'page-blogs';
-
-    $scope.articles= [
-       
-        {
-            title:'Welcome to Westlake Pioneers',
-            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
-            pictures:[
-                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
-            ],
-            reviews:[
-                {
-                    author:'Jack Wang',posttime:'',
-                    body:'I will keep track of your blog!',
-                    replies:[
-                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
-
-                    ]
-                }
-            ],
-            posttime:'',
-            author:'Jack Wang'
-        },
-        {
-            title:'Welcome to Westlake Pioneers',
-            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
-            pictures:[
-                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
-            ],
-            reviews:[
-                {
-                    author:'Jack Wang',posttime:'',
-                    body:'I will keep track of your blog!',
-                    replies:[
-                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
-
-                    ]
-                }
-            ],
-            posttime:'',
-            author:'Jack Wang'
-        }
-      
-    ];
-
+app.controller('blogsController',function($scope,$http){	
+    $scope.pageClass = 'page-blogs';
+    $http.get('/retrieveblogs').success(function(response){
+        $scope.articles = response;
+    });
 });
 app.controller('teamController',function($scope){
     $scope.pageClass = 'page-team';
-
-    $scope.managers= [
-       
+    $scope.managers= [       
         {name:'Jack Wang',
         alt:'Jack Wang',
         path:'images/JackWang2.JPG',
         title:'Founder',
-        description:'Technology evangelist on \'Salesforce CRM\', \'Web Development\''}
-      
+        description:'Technology evangelist on \'Salesforce CRM\', \'Web Development\''}     
     ];
-
 });
 app.controller('aboutController',function($scope){
 	$scope.message = 'Look! I am an about page.';

@@ -1,16 +1,48 @@
 var express = require("express");
 var app = express();
 
-var sweetcaptcha = new require('sweetcaptcha')(appId, appKey, appSecret);
 
-app.get('/', function(req, res){
-	//get sweetcaptcha html for the contact area
-	sweetcaptcha.api('get_html', function(err,html){
-		//Send the guts of the captcha to your template
-		res.render('main', { captcha : html });
-	});
+
+app.get('/retrieveblogs', function(req, res){
+	console.log('blog get request');
+	var articles= [       
+        {
+            title:'Welcome to Westlake Pioneers',
+            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
+            pictures:[
+                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
+            ],
+            reviews:[
+                {
+                    author:'Jack Wang',posttime:'',
+                    body:'I will keep track of your blog!',
+                    replies:[
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
+                    ]
+                }
+            ],
+            posttime:'',
+            author:'Jack Wang'
+        },
+        {
+            title:'Welcome to Westlake Pioneers',
+            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
+            reviews:[
+                {
+                    author:'Jack Wang',posttime:'',
+                    body:'I will keep track of your blog!',
+                    replies:[
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
+
+                    ]
+                }
+            ],
+            posttime:'',
+            author:'Jack Wang'
+        }      
+    ];
+    res.json(articles);
 });
-
 
 
 app.use(express.static(__dirname + "/public"));

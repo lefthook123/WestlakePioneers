@@ -54,16 +54,20 @@ app.controller('mainController',function($scope){
 	$scope.pageClass = 'page-home';
     $scope.carousels = [
         {
-            name : '',
-            imgPath: ''
+            name : '1',
+            Path: 'images/carousel1.png'
         },
         {
-            name:'',
-            imgPath:''
+            name:'2',
+            Path:'images/carousel2.jpeg'
         },
         {
-            name:'',
-            imgPath:''
+            name:'3',
+            Path:'images/carousel3.jpeg'
+        },
+        {
+            name:'4',
+            Path:'images/carousel4.jpeg'
         }
     ];
 

@@ -1,10 +1,21 @@
 var express = require("express");
 var app = express();
-
+var mongojs = require('mongojs');
+var db = mongojs('wpblogs',['wpblogs']);
 
 
 app.get('/retrieveblogs', function(req, res){
 	console.log('blog get request');
+
+	db.wpblogs.find(function(err,docs){
+		if(err){
+			console.log(err);
+		}else{
+			res.json(docs);
+		}
+	});
+
+	/*
 	var articles= [       
         {
             title:'Welcome to Westlake Pioneers',
@@ -49,7 +60,7 @@ app.get('/retrieveblogs', function(req, res){
             author:'Jack Wang'
         }      
     ];
-    res.json(articles);
+    res.json(articles);*/
 });
 
 

@@ -1,8 +1,18 @@
 var express = require("express");
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('wpblogs',['wpblogs']);
+var dburl = process.env.MONGOLAB_URI;
+var blogcollection = ['wpblogs'];
+var db = mongojs(dburl,blogcollection);
 
+function article(title,body,pictures,reviews,posttime,author){
+    this.title = title;
+    this.body = body;
+    this.pictures = pictures;
+    this.reviews = reviews;
+    this.posttime = posttime;
+    this.author = author;
+}
 
 app.get('/retrieveblogs', function(req, res){
 	console.log('blog get request');

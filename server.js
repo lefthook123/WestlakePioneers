@@ -3,7 +3,7 @@ var app = express();
 var mongojs = require('mongojs');
 var dburl = process.env.MONGOLAB_URI;
 var blogcollection = ['wpblogs'];
-var db = mongojs(dburl,blogcollection);
+//var db = mongojs(dburl,blogcollection);
 
 function article(title,body,pictures,reviews,posttime,author){
     this.title = title;

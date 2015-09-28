@@ -1,9 +1,8 @@
 'use strict';
-var app = angular.module('WPApp',["ui.router",'ngAnimate']);
+var app = angular.module('WPApp',["ui.router",'ngAnimate','ui.bootstrap','ngCookies','ngTouch']);
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 	$urlRouterProvider.otherwise('/home');
-	$stateProvider
-        
+	$stateProvider        
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',

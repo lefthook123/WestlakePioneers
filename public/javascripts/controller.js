@@ -2,27 +2,27 @@
 angular.module('WPApp')
 
 .controller('mainController',function($scope){
-	$scope.message = 'Everyone come and see how good I look!';
-	$scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
-	$scope.pageClass = 'page-home';
-    $scope.carousels = [
+    $scope.myInterval = 5000;
+    $scope.noWrapSlides = false;
+    var slides = $scope.slides = [
         {
-            name : '1',
-            Path: 'images/carousel1.png'
+            image: 'images/home-carousel1.png',
+            text: ''
         },
         {
-            name:'2',
-            Path:'images/carousel2.jpeg'
+            image: 'images/home-carousel2.png',
+            text: ''
         },
         {
-            name:'3',
-            Path:'images/carousel3.jpeg'
+            image: 'images/home-carousel3.jpeg',
+            text: ''
         },
         {
-            name:'4',
-            Path:'images/carousel4.jpeg'
+            image: 'images/home-carousel4.jpeg',
+            text: ''
         }
     ];
+	$scope.pageClass = 'page-home';
 
     $scope.services= [
         {name:'GROWTH CONSULTING',

@@ -6,6 +6,10 @@ angular.module('WPApp')
     $scope.noWrapSlides = false;
     var slides = $scope.slides = [
         {
+            image: 'images/home-carousel5.png',
+            text: ''
+        },
+        {
             image: 'images/home-carousel1.png',
             text: ''
         },

@@ -1,10 +1,19 @@
 var express = require("express");
 var app = express();
+var secret = 'Lonestar1';
+//***************************Authentication Use****************
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+//**************************************************************
+var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 var dburl = process.env.MONGOLAB_URI;
 var blogcollection = ['wpblogs'];
 //var db = mongojs(dburl,blogcollection);
 
+app.use('/api',expressJwt({secret:secret}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 function article(title,body,pictures,reviews,posttime,author){
     this.title = title;
     this.body = body;

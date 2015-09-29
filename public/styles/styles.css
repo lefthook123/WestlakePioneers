@@ -48,7 +48,12 @@
 
 .page-home .jumbotron{
     padding: 0;
+
+}     
+.page-home #carouseldiv{
+    width: 1460px;
 }
+
 
 .page-blogs #CommentsNum{
     color:grey;

@@ -14,6 +14,31 @@ var blogcollection = ['wpblogs'];
 app.use('/api',expressJwt({secret:secret}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.post('/authenticate',function(req,res){
+    if(!(req.body.username==='john.doe'&&req.body.password==='foobar')){
+        res.send(401,'Wrong user or password');
+        return;
+    }
+
+    var profile = {
+        first_name: 'John',
+        last_name:'Doe',
+        email:'john@doe.com',
+        id: 123
+    };
+
+    var token = jwt.sign(profile,secret,{expiresInMinutes:60*5});
+    res.json({token:token});
+});
+
+app.get('/api/restricted',function(req,res){
+    console.log('user ' + req.user.email + ' is calling /api/restricted');
+    res.json({
+        name:'foo'
+    });
+});
+
 function article(title,body,pictures,reviews,posttime,author){
     this.title = title;
     this.body = body;

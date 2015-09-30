@@ -1,4 +1,6 @@
-'use strict';
+(function(){
+    'use strict';
+}());
 angular.module('WPApp')
 
 .controller('mainController',function($scope){
@@ -79,5 +81,11 @@ angular.module('WPApp')
 })
 .controller('contactController',function($scope){
 	$scope.pageClass = 'page-contact';
+
+})
+.controller('loginController',function($scope){
+    $scope.dismiss = function() {
+        $scope.$dismiss();
+    };
 
 });

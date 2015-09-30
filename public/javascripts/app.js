@@ -1,5 +1,7 @@
-'use strict';
-var app = angular.module('WPApp',["ui.router",'ngAnimate','ui.bootstrap','ngCookies','ngTouch']);
+(function(){
+    'use strict';
+}());
+var app = angular.module('WPApp',["ui.router",'ngAnimate','ui.bootstrap','ngCookies','ngTouch','ngResource']);
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 	$urlRouterProvider.otherwise('/home');
 	$stateProvider        
@@ -29,8 +31,14 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
         })
         .state('login', {
             url: '/login',
-            templateUrl: 'login/login.html',
-            controller:'loginController'
+            onEnter:['$stateParams','$state','$modal','$resource',function($stateParams,$state, $modal, $resource){
+                $modal.open({
+                    templateUrl: 'login/login.html',
+                    controller:'loginController'
+                }).result.finally(function(){
+                    $state.go('home',{});
+                });
+            }]                        
         })
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {

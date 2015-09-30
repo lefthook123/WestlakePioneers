@@ -27,6 +27,11 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
             templateUrl: 'template/partial-team.html',
             controller:'teamController'
         })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'login/login.html',
+            controller:'loginController'
+        })
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
             url: '/about',

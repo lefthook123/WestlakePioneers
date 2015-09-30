@@ -36,7 +36,7 @@
 		                <li><a ui-sref="team"><i class="fa fa-shield"></i>Our Team</a></li>
 		                <li><a ui-sref="blogs"><i class="fa fa-book"></i>Blogs</a></li>
 		                <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
-		                <li><a href="#Login" data-toggle="modal"><i class="fa fa-sign-in"></i></i>Login</a></li>
+		                <li><a ui-sref="Login" data-toggle="modal"><i class="fa fa-sign-in"></i></i>Login</a></li>
 		            </ul>
 	            </div>
 			</div>
@@ -47,63 +47,7 @@
 		<div class="page {{pageClass}}" ui-view>			
 		</div>
 	</div>
-	<div class="modal fade" id="Login" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="cotainer">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="modal-body">
-								Sign In
-								<hr>
-								<form class="form-horizontal" role="form">
-									<div class="form-group">
-										<label for="email" class="col-sm-2 control-label">Email:</label>
-										<div class="col-sm-10">
-											<input type="email" class="form-control" id="email" placeholder="example@domain.com">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="password" class="col-sm-2 control-label">Password:</label>
-										<div class="col-sm-10">
-											<input type="password" class="form-control" id="password">
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button class="btn btn-primary" data-dismiss="modal">Login</button>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="modal-body">
-								Create Account
-								<hr>
-								<form class="form-horizontal" role="form">
-									<div class="form-group">
-										<label for="new-user-email" class="col-sm-2 control-label">Email</label>
-										<div class="col-sm-10">
-											<input type="email" class="form-control" id="new-user-email" placeholder="example@domain.com">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="new-user-password" class="col-sm-2 control-label">Password</label>
-										<div class="col-sm-10">
-											<input type="password" class="form-control" id="new-user-password">
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
+
 	<footer>
 		<nav class="navbar navbar-inverse navbar-static-bottom">
 			<div class = "container">

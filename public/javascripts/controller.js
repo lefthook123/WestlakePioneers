@@ -84,8 +84,10 @@ angular.module('WPApp')
 
 })
 .controller('loginController',function($scope){
-    $scope.dismiss = function() {
+    $scope.cancel = function() {
         $scope.$dismiss();
     };
-
+    $scope.login = function() {
+        $scope.$dismiss();
+    };
 });

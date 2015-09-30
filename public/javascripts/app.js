@@ -33,6 +33,8 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
             url: '/login',
             onEnter:['$stateParams','$state','$modal','$resource',function($stateParams,$state, $modal, $resource){
                 $modal.open({
+                    animation: true,
+                    size:'',
                     templateUrl: 'login/login.html',
                     controller:'loginController'
                 }).result.finally(function(){

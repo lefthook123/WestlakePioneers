@@ -1,43 +1,110 @@
+//Require Deps
 var express = require("express");
-var app = express();
-var secret = 'Lonestar1';
-//***************************Authentication Use****************
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
-//**************************************************************
 var bodyParser = require('body-parser');
+var passport = require('passport');
 var mongojs = require('mongojs');
+var LocalStrategy = require('passport-local').Strategy;
+var fs = require('fs');
+
+//Database
+
+var dbFile = './user.json';
+if (fs.existsSync(__dirname + '/user.local.json')) {
+  dbFile = './user.local.json';
+}
+var user = require(dbFile);
+var userPassword = user.password;
+delete user.password;
+
+
+
 var dburl = process.env.MONGOLAB_URI;
 var blogcollection = ['wpblogs'];
 //var db = mongojs(dburl,blogcollection);
 
-app.use('/api',expressJwt({secret:secret}));
-app.use(bodyParser.urlencoded({extended: true}));
+//setup server
+var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/authenticate',function(req,res){
-    if(!(req.body.username==='john.doe'&&req.body.password==='foobar')){
-        res.send(401,'Wrong user or password');
-        return;
+//setup jwt
+var jwtSuperSecretCode = 'lonestar1';
+var validateJwt = expressJwt({secret:jwtSuperSecretCode});
+app.use('/',function(req,res,next){
+    if(req.originalUrl === '/login'){
+        next();
+    }else{
+        validateJwt(req,res,next);
     }
-
-    var profile = {
-        first_name: 'John',
-        last_name:'Doe',
-        email:'john@doe.com',
-        id: 123
-    };
-
-    var token = jwt.sign(profile,secret,{expiresInMinutes:60*5});
-    res.json({token:token});
 });
 
-app.get('/api/restricted',function(req,res){
-    console.log('user ' + req.user.email + ' is calling /api/restricted');
-    res.json({
-        name:'foo'
-    });
+
+// setup cors
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
 });
+
+
+// setup passport
+passport.use(new LocalStrategy(function(username, password, done) {
+  if (username === user.username && password === userPassword) {
+    return done(null, user);
+  } else {
+    done(null, false, { message: 'Incorrect username or password' });
+  }
+}));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+  if (username === user.username) {
+    done(null, user);
+  } else {
+    done('No user with username ' + username);
+  }
+});
+
+
+//setup routes
+app.post('/login',function(req,res,next){
+    passport.authenticate('local',function(err,user,info){
+        if(err){
+            return next(err);
+        }if(!user){
+            return res.json(404,'No user found...');
+        }
+        req.logIn(user,function(err){
+            if(err){
+                return next(err);
+            }
+            var token =jwt.sign({
+                username:user.username
+            },jwtSuperSecretCode);
+            return res.json(200,{token:token,user:user});
+        });
+    })(req,res,next);
+});
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.json(200, { success: true });
+});
+
+app.get('/users/me', function(req, res) {
+  if (req.user) {
+    res.json(user);
+  } else {
+    res.json(403, { message: 'Not authorized' });
+  }
+});
+
 
 function article(title,body,pictures,reviews,posttime,author){
     this.title = title;

@@ -1,5 +1,7 @@
 //Require Deps
 var express = require("express");
+var morgan = require("morgan");
+var mongoose = require("mongoose");
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
@@ -7,9 +9,9 @@ var passport = require('passport');
 var mongojs = require('mongojs');
 var LocalStrategy = require('passport-local').Strategy;
 var fs = require('fs');
+var config = require('./config');
 
 //Database
-
 var dbFile = './user.json';
 if (fs.existsSync(__dirname + '/user.local.json')) {
   dbFile = './user.local.json';
@@ -32,7 +34,7 @@ app.use(bodyParser.json());
 //setup jwt
 var jwtSuperSecretCode = 'lonestar1';
 var validateJwt = expressJwt({secret:jwtSuperSecretCode});
-app.use('/',function(req,res,next){
+app.use('/team',function(req,res,next){
     if(req.originalUrl === '/login'){
         next();
     }else{

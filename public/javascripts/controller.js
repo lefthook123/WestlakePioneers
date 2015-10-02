@@ -83,7 +83,12 @@ angular.module('WPApp')
 	$scope.pageClass = 'page-contact';
 
 })
-.controller('loginController',function($scope){
+.controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
+
+    $scope.getMe = function(){
+
+    };
+
     $scope.cancel = function() {
         $scope.$dismiss();
     };

@@ -85,14 +85,10 @@ angular.module('WPApp')
 })
 .controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
 
-    $scope.getMe = function(){
-
-    };
-
     $scope.cancel = function() {
         $scope.$dismiss();
     };
-    $scope.login = function() {
+    $scope.login = function(email,password) {
         $scope.$dismiss();
     };
 });

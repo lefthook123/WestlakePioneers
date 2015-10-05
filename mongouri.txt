@@ -1,0 +1,8 @@
+MONGOLAB_URI: mongodb://heroku_tgzjkx0j:pr63ukqua4surn1655fjj34q4v@ds051843.mongolab.com:51843/heroku_tgzjkx0j
+
+
+
+To connect using the shell:
+mongo ds051843.mongolab.com:51843/heroku_tgzjkx0j -u heroku_tgzjkx0j -p pr63ukqua4surn1655fjj34q4v@ds051843
+To connect using a driver via the standard URI (what's this?):
+  mongodb://<dbuser>:<dbpassword>@ds051843.mongolab.com:51843/heroku_tgzjkx0j

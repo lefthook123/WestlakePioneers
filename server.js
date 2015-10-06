@@ -48,6 +48,49 @@ app.get('/setup',function(req,res){
     });
 });
 
+app.post('/authenticate',function(req,res){
+    User.findOne({
+        name:req.body.name
+    },function(err,user){
+        if(err) throw err;
+        if(!user){
+            res.json(404,'Authentication failed. User not found');
+        }else if(user){
+            if(user.password != req.body.password){
+                res.json(404,'Authentication failed. Wrong password.');
+            }else{
+                var token = jwt.sign(user,app.get('superSecret'),{
+                    expireInMinutes:1440 //expires in 24 hours
+                });
+
+                res.json(
+                    200,{token:token,user:user}
+                );
+            }
+        }
+    });
+});
+// route middleware to verify a token
+app.use(function(req,res,next){
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if(token){
+        jwt.verify(token,app.get('superSecret'),function(err,decoded){
+            if(err){
+                return res.json(404,'Failed to authenticate token.');                
+            }else{
+                req.decoded = decoded;
+                next();
+            }
+        });
+    }else{
+        return res.status(403).send({
+            success:false,
+            message:'No token provided.'
+        });
+    }
+})
+
 
 
 function article(title,body,pictures,reviews,posttime,author){

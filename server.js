@@ -30,6 +30,26 @@ app.use(morgan('dev'));
 // routes ================
 // =======================
 // basic route
+// route middleware to verify a token
+app.use('/setup',function(req,res,next){
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if(token){
+        jwt.verify(token,app.get('superSecret'),function(err,decoded){
+            if(err){
+                return res.json(404,'Failed to authenticate token.');                
+            }else{
+                req.decoded = decoded;
+                next();
+            }
+        });
+    }else{
+        return res.status(403).send({
+            success:false,
+            message:'No token provided.'
+        });
+    }
+});
 
 app.get('/setup',function(req,res){
     var jack = new User({
@@ -70,26 +90,6 @@ app.post('/authenticate',function(req,res){
         }
     });
 });
-// route middleware to verify a token
-app.use(function(req,res,next){
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
-    if(token){
-        jwt.verify(token,app.get('superSecret'),function(err,decoded){
-            if(err){
-                return res.json(404,'Failed to authenticate token.');                
-            }else{
-                req.decoded = decoded;
-                next();
-            }
-        });
-    }else{
-        return res.status(403).send({
-            success:false,
-            message:'No token provided.'
-        });
-    }
-})
 
 
 

@@ -10,7 +10,7 @@
 				</div>
 				<div class="well poster">
 					<span><i class="fa fa-user"></i>{{article.author}}</span>
-					<span><i class="fa fa-calendar"></i>{{article.posttime}}</span>
+					<span><i class="fa fa-calendar"></i>{{article.posttime|date:'medium'}}</span>
 				</div>
 				<p class="well blogbody">{{article.body}}</p>
 				<div id="review" style="text-align:left;">
@@ -22,7 +22,7 @@
 						<div>
 							<div>
 								<span><i class="fa fa-user"></i>{{review.author}}</span>
-								<span><i class="fa fa-calendar"></i>{{review.posttime}}</span>
+								<span><i class="fa fa-calendar"></i>{{review.posttime|date:'medium'}}</span>
 							</div>
 							<div class="well commentsbody">
 								<p>{{review.body}}</p>
@@ -33,7 +33,7 @@
 									<div>
 										<div>
 											<span><i class="fa fa-user"></i>{{reply.author}}</span>
-											<span><i class="fa fa-calendar"></i>{{reply.posttime}}</span>
+											<span><i class="fa fa-calendar"></i>{{reply.posttime|date:'medium'}}</span>
 										</div>
 										<p>{{reply.body}}</p>
 									</div>

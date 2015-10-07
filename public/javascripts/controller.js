@@ -51,6 +51,31 @@ angular.module('WPApp')
         $scope.articles = response;
     });
 })
+.controller('adminblogsController',function($scope,$http){
+    var refresh = function(){
+            console.log('refresh');
+            $http.get('/retrieveblogs').success(function(response){
+            $scope.articles = response;
+            $scope.blog=null;
+        });
+    };
+    refresh();
+    $scope.pageClass = 'page-blogs';    
+    $scope.remove = function(id){
+        $http.delete('/admin/deleteblog/'+id).success(function(response){
+            refresh();
+        });
+    };
+
+    $scope.addBlog=function(){
+        $scope.blog.pictures = [];
+        $scope.blog.pictures.push({'path': $scope.picturePaths});
+        $http.post('/admin/postblog',$scope.blog).success(function(response){
+            refresh();
+        });
+    };
+
+})
 .controller('teamController',function($scope){
     $scope.pageClass = 'page-team';
     $scope.managers= [       
@@ -85,11 +110,52 @@ angular.module('WPApp')
 })
 .controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
 
-
+    $scope.badCreds = false;
     $scope.cancel = function() {
         $scope.$dismiss();
     };
-    $scope.login = function() {
-        $scope.$dismiss();
+    $scope.login = function(email,password) {
+        $http({
+            url:'authenticate',
+            method:'POST',
+            data:{
+                email:email,
+                password:password
+            }
+        }).then(function success(response){
+            AuthToken.setToken(response.data.token);
+            $scope.user = response.data.user;
+            $scope.alreadyLoggedIn = true;
+            showAlert('success', 'Hey there!', 'Welcome ' + $scope.user.username + '!');
+        },function error(response){
+            if(response.status===404){
+                $scope.badCreds=true;
+                showAlert('danger', 'Whoops...', 'Do I know you?');
+            }else{
+                showAlert('danger', 'Hmmm....', 'Problem logging in! Sorry!');
+            }
+        });
     };
+
+    $scope.logout = function(){
+        AuthToken.clearToken();
+        $scope.user = null;
+        showAlert('info','Goodbye!','Have a great day!');
+    };
+
+    var alertTimeout;
+    function showAlert(type,title,message,timeout){
+        $scope.alert = {
+            hasBeenShown: true,
+            show: true,
+            type: type,
+            message: message,
+            title:title
+
+        };
+        $timeout.cancel(alertTimeout);
+        alertTimeout = $timeout(function(){
+            $scope.alert.show = false;
+        },timeout || 1500);
+    }
 });

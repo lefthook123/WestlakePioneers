@@ -1,8 +1,6 @@
 (function(){
     'use strict';
 }());
-
-
 (function(){
 angular.module('WPApp')
 .factory('AuthToken',function($window){
@@ -15,7 +13,6 @@ angular.module('WPApp')
 		getToken: getToken,
 		clearToken: clearToken
 	};
-
 	function setToken(token){
 		cachedToken = token;
 		storage.setItem(tokenKey,token);
@@ -26,12 +23,10 @@ angular.module('WPApp')
 		}
 		return cachedToken;
 	}	
-
 	function clearToken(){
 		cachedToken = null;
 		storage.removeItem(tokenKey);
 	}
-
 	function isAuthenticated(){
 		return !!getToken();
 	}
@@ -56,8 +51,4 @@ angular.module('WPApp')
 		}
 	};
 });
-
-
-
-
 })();

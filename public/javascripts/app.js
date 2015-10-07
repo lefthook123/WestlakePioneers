@@ -2,8 +2,9 @@
     'use strict';
 }());
 var app = angular.module('WPApp',["ui.router",'ngAnimate','ui.bootstrap','ngCookies','ngTouch','ngResource']);
-app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
+app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider){
 	$urlRouterProvider.otherwise('/home');
+    $httpProvider.interceptors.push('AuthInterceptor');
 	$stateProvider        
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
@@ -58,6 +59,11 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
             url: '/contact',
             templateUrl: 'template/partial-contact.html',
             controller:'contactController'       
+        })
+        .state('admin-blogs', {
+            url: '/admin/blogs',
+            templateUrl: 'template/admin-blogs.html',
+            controller:'adminblogsController'       
         });
         $locationProvider.html5Mode(true);
 });

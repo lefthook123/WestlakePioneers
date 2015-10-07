@@ -10,7 +10,7 @@ var passport = require('passport');
 var mongojs = require('mongojs');
 var config = require('./config');
 var User = require('./models/user');
-
+var Blog = require('./models/blog');
 
 // =======================
 // configuration =========
@@ -31,7 +31,7 @@ app.use(morgan('dev'));
 // =======================
 // basic route
 // route middleware to verify a token
-app.use('/setup',function(req,res,next){
+app.use('/waiting',function(req,res,next){
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if(token){
@@ -52,18 +52,39 @@ app.use('/setup',function(req,res,next){
 });
 
 app.get('/setup',function(req,res){
-    var jack = new User({
-        name: 'Jack Wang',
-        password: 'password',
-        admin: true,
-        company: 'EMC Isilon'
+
+    var blog = new Blog({
+            title:'Welcome to Westlake Pioneers',
+            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
+            pictures:[
+                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
+            ],
+            reviews:[
+                {
+                    author:'Jack Wang',posttime:'',
+                    body:'I will keep track of your blog!',
+                    replies:[
+                        {author:'Tom',posttime:'',body:'Glad to hear that!'},
+                        {author:'Cindy',posttime:'',body:'I want to join!'}
+                    ]
+                },
+                {
+                    author:'James Lemon',posttime:'',
+                    body:'Come on!',
+                    replies:[
+                        {author:'Jack Wang',posttime:'',body:'I will!'}
+                    ]
+                }
+            ],
+            posttime:Date.now(),
+            author:'Jack Wang'
     });
-    jack.save(function(err){
+    blog.save(function(err){
         if(err){
             console.log(err);
             throw err;
         }
-        console.log('User saved successfully');
+        console.log('Blog saved successfully');
         res.json({success: true});
     });
 });
@@ -91,6 +112,39 @@ app.post('/authenticate',function(req,res){
     });
 });
 
+app.delete('/admin/deleteblog/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('deleteblog request');
+    Blog.find({_id:objectId}).remove(function(err,model){
+        if(err){
+            res.json('unable to remove');
+        }else{
+            res.json(model);
+        }
+    });
+});
+app.post('/admin/postblog',function(req,res){
+    var reqBody=req.body;
+    var blog = new Blog({
+            title:reqBody.title,
+            body:reqBody.body,
+            pictures:reqBody.pictures,
+            reviews:[
+            ],
+            posttime:Date.now(),
+            author:reqBody.author
+    });
+    blog.save(function(err){
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        console.log('Blog saved successfully');
+        res.json({success: true});
+    });
+
+});
 
 
 function article(title,body,pictures,reviews,posttime,author){
@@ -104,61 +158,10 @@ function article(title,body,pictures,reviews,posttime,author){
 
 app.get('/retrieveblogs', function(req, res){
 	console.log('blog get request');
-
-	db.wpblogs.find(function(err,docs){
-		if(err){
-			console.log(err);
-		}else{
-			res.json(docs);
-		}
-	});
-
-	/*
-	var articles= [       
-        {
-            title:'Welcome to Westlake Pioneers',
-            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
-            pictures:[
-                {style:'width:100px;height:100px;',path:'images/welcome.jpg',name:'welcome'}
-            ],
-            reviews:[
-                {
-                    author:'Jack Wang',posttime:'',
-                    body:'I will keep track of your blog!',
-                    replies:[
-                        {author:'Tom',posttime:'',body:'Glad to hear that!'},
-                        {author:'Cindy',posttime:'',body:'I want to join!'}
-                    ]
-                },
-                {
-                    author:'James Lemon',posttime:'',
-                    body:'Come on!',
-                    replies:[
-                        {author:'Jack Wang',posttime:'',body:'I will!'}
-                    ]
-                }
-            ],
-            posttime:'',
-            author:'Jack Wang'
-        },
-        {
-            title:'Welcome to Westlake Pioneers',
-            body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
-            reviews:[
-                {
-                    author:'Jack Wang',posttime:'',
-                    body:'I will keep track of your blog!',
-                    replies:[
-                        {author:'Tom',posttime:'',body:'Glad to hear that!'}
-
-                    ]
-                }
-            ],
-            posttime:'',
-            author:'Jack Wang'
-        }      
-    ];
-    res.json(articles);*/
+    Blog.find({},function(err,blogs){
+        console.log(blogs);
+        res.json(blogs);
+    });
 });
 
 

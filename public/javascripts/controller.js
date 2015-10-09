@@ -65,13 +65,12 @@ angular.module('WPApp')
     $scope.pageClass = 'page-blogs';
     var title = $stateParams.blogTitle;
     $http.get('/retrieveblogs/'+title).success(function(response){
-        $scope.selectedBlog = response[0];
+        $scope.selectedBlog = response;
     });
 })
 .controller('adminblogsController',function($scope,$http){
     
     var refresh = function(){
-            console.log('refresh');
             $http.get('/retrieveblogs').success(function(response){
             $scope.articles = response;
             $scope.blog=null;
@@ -96,6 +95,13 @@ angular.module('WPApp')
         $http.post('/admin/postblog',$scope.blog).success(function(response){
             refresh();
         });
+    };
+    $scope.edit = function(id){
+        console.log(id);
+    };
+
+    $scope.update = function(){
+
     };
 })
 .controller('teamController',function($scope){

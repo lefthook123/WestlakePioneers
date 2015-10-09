@@ -27,6 +27,8 @@
 		<div class="col-md-8">
 			<div ng-repeat="article in articles" class="wholearticle">
 				<div>
+					<button class="btn btn-warning" ng-click="edit(article._id)">Edit</button>
+					<button class="btn btn-info" ng-click="update(article._id)">Update</button>
 					<button class="btn btn-danger" ng-click="remove(article._id)">Remove</button>
 				</div>
 				<h1>{{article.title}}</h3>

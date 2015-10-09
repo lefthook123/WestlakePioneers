@@ -166,9 +166,8 @@ app.get('/retrieveblogs', function(req, res){
 app.get('/retrieveblogs/:title', function(req, res){
     var title = req.params.title;
     console.log('single blog get request');
-    Blog.find({title:title},function(err,blogs){
-        console.log(blogs);
-        res.json(blogs);
+    Blog.findOne({title:title},function(err,blog){
+        res.json(blog);
     });
 });
 

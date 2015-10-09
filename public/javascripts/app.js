@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         .state('blogdetail', {
             url: '/blogs/:blogTitle',
             templateUrl: 'template/partial-blog-detail.html',
-            controller:'blogsController'
+            controller:'blogsDetailController'
         })
     	.state('team', {
             url: '/team',

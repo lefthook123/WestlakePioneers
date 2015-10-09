@@ -65,6 +65,25 @@ angular.module('WPApp')
         $location.path('/blogs/'+$scope.selectedBlog.title);
     };
 })
+.controller('blogsDetailController',function($scope,$http,$location){ 
+    $scope.pageClass = 'page-blogs';
+    $scope.articles=[];
+    var refresh = function(){
+            $http.get('/retrieveblogs').success(function(response){
+            $scope.articles = response;
+            $scope.blog=null;
+        });
+    };
+    refresh();
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.articles.length/$scope.pageSize);
+    };
+    $scope.readmore = function(item){    
+        $state
+    };
+})
 .controller('adminblogsController',function($scope,$http){
     
     var refresh = function(){

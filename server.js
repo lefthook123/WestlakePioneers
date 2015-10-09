@@ -163,7 +163,14 @@ app.get('/retrieveblogs', function(req, res){
         res.json(blogs);
     });
 });
-
+app.get('/retrieveblogs/:title', function(req, res){
+    var title = req.params.title;
+    console.log('single blog get request');
+    Blog.find({title:title},function(err,blogs){
+        console.log(blogs);
+        res.json(blogs);
+    });
+});
 
 app.use(express.static(__dirname + "/public"));
 app.all('/*', function(req, res, next) {

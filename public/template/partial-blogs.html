@@ -12,7 +12,10 @@
 					<span><i class="fa fa-calendar"></i>{{article.posttime|date:'medium'}}</span>
 				</div>
 				<p class="well blogbody">{{article.body|limitTo:500}}</p>
-					<a ui-sref="">Read More</a>
+				<div>
+					<i class="fa fa-sign-out"></i>
+					<a ui-sref="blogdetail({blogTitle:article.title})">Read More</a>
+				</div>	
 				<div class="col-xs-12"><hr/></div>
 			</div>
 		</div>

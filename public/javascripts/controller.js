@@ -45,19 +45,39 @@ angular.module('WPApp')
         description:['Targeted List Development','Predictive Modeling','CRM Development / Customization']},
     ];
 })
-.controller('blogsController',function($scope,$http){	
+.controller('blogsController',function($scope,$http,$location){	
     $scope.pageClass = 'page-blogs';
-    $http.get('/retrieveblogs').success(function(response){
-        $scope.articles = response;
-    });
+    $scope.articles=[];
+    var refresh = function(){
+            $http.get('/retrieveblogs').success(function(response){
+            $scope.articles = response;
+            $scope.blog=null;
+        });
+    };
+    refresh();
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.articles.length/$scope.pageSize);
+    };
+    $scope.readmore = function(item){    
+        $scope.selectedBlog = item;
+        $location.path('/blogs/'+$scope.selectedBlog.title);
+    };
 })
 .controller('adminblogsController',function($scope,$http){
+    
     var refresh = function(){
             console.log('refresh');
             $http.get('/retrieveblogs').success(function(response){
             $scope.articles = response;
             $scope.blog=null;
         });
+    };
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.articles.length/$scope.pageSize);
     };
     refresh();
     $scope.pageClass = 'page-blogs';    
@@ -74,7 +94,11 @@ angular.module('WPApp')
             refresh();
         });
     };
-
+    $scope.readmore = function(item){
+        console.log('read more');
+        console.log('item: '+item);
+        $scope.selectedBlog = item;
+    };
 })
 .controller('teamController',function($scope){
     $scope.pageClass = 'page-team';

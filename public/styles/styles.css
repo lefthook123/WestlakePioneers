@@ -54,6 +54,13 @@
     width: 1460px;
 }
 
+.page-blogs .box{
+  margin: 100px auto;
+  width: 300px;
+  height: 50px;
+}
+
+
 
 .page-blogs #CommentsNum{
     color:grey;
@@ -93,7 +100,7 @@
 ============================================================================= */
 .page-home      { background:#00D0BC; color:#00907c; }
 .page-team     { background:#E59400; color:#1F1307; }
-.page-blogs     { background:#E59400; color:#1F1307; }
+.page-blogs     { background:#00D0BC; color:#1F1307; }
 .page-contact   { background:#ffa6bb; color:#9e0000; }
 
 .ng-enter       { z-index: 8888; }

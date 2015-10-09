@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="row-fluid">
+		<div class="col-md-12">
+				<h1>{{selectedBlog.title}}</h3>
+				<div ng-show={{selectedBlog.pictures.length}} ng-repeat="picture in selectedBlog.pictures">
+					<div style="width:100%;height:100%;">
+						<img style="width:100%" ng-src={{picture.path}} alt={{picture.name}}>
+					</div>
+				</div>
+				<div class="well poster">
+					<span><i class="fa fa-user"></i>{{selectedBlog.author}}</span>
+					<span><i class="fa fa-calendar"></i>{{selectedBlog.posttime|date:'medium'}}</span>
+				</div>
+				<p class="well blogbody">{{selectedBlog.body}}</p>
+				<div id="review" style="text-align:left;">
+					<h3 id="Comments">Comments</h5>
+					<div id="CommentsNum">
+						<i class="fa fa-comment-o"></i>{{selectedBlog.reviews.length}}Comments
+					</div>
+					<div  ng-repeat="review in selectedBlog.reviews">
+						<div>
+							<div>
+								<span><i class="fa fa-user"></i>{{review.author}}</span>
+								<span><i class="fa fa-calendar"></i>{{review.posttime|date:'medium'}}</span>
+							</div>
+							<div class="well commentsbody">
+								<p>{{review.body}}</p>
+								<div class="col-xs-12"><hr/>
+								</div>
+								<h5>Replies</h5>
+								<div id="replies" ng-repeat="reply in review.replies">
+									<div>
+										<div>
+											<span><i class="fa fa-user"></i>{{reply.author}}</span>
+											<span><i class="fa fa-calendar"></i>{{reply.posttime|date:'medium'}}</span>
+										</div>
+										<p>{{reply.body}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="col-xs-12"><hr/>
+								</div>
+			</div>
+		</div>
+	</div>
+</div>

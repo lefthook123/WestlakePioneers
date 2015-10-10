@@ -16,8 +16,5 @@ module.exports = mongoose.model('Blog', new Schema({
     },
     posttime :Date,
     author: String,
-    tag:{
-        type:Array,
-        "default":[]
-    }
+    tags:String
 }));

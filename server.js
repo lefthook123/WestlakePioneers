@@ -116,6 +116,7 @@ app.delete('/admin/deleteblog/:id',function(req,res){
     var id = req.params.id;
     var objectId = mongoose.Types.ObjectId(id);
     console.log('deleteblog request');
+    console.log('deleteblog request');
     Blog.find({_id:objectId}).remove(function(err,model){
         if(err){
             res.json('unable to remove');
@@ -123,6 +124,21 @@ app.delete('/admin/deleteblog/:id',function(req,res){
             res.json(model);
         }
     });
+});
+app.put('/admin/updateblog/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('updateblog request');
+    var blogbody = req.body.body;
+    var blogtags=req.body.tags;
+    Blog.findOneAndUpdate(
+        {_id:objectId},
+        {
+            body:blogbody,
+            tags:blogtags
+        },function(err,article){
+            if(err)throw err;
+        });
 });
 app.post('/admin/postblog',function(req,res){
     var reqBody=req.body;

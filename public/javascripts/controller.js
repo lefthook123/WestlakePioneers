@@ -67,6 +67,15 @@ angular.module('WPApp')
     $http.get('/retrieveblogs/'+title).success(function(response){
         $scope.selectedBlog = response;
     });
+    $scope.replying=false;
+    $scope.reply=function(){
+        $scope.replying=true;
+    };
+    $scope.cancel=function(){
+        $scope.replying=false;
+    };
+    $scope.postReply=function(){
+    };
 })
 .controller('adminblogsController',function($scope,$http){
     
@@ -88,7 +97,6 @@ angular.module('WPApp')
             refresh();
         });
     };
-
     $scope.addBlog=function(){
         $scope.blog.pictures = [];
         $scope.blog.pictures.push({'path': $scope.picturePaths});
@@ -96,12 +104,18 @@ angular.module('WPApp')
             refresh();
         });
     };
-    $scope.edit = function(id){
-        console.log(id);
+    $scope.editing=false;
+    $scope.edit = function(){
+        $scope.editing=true;
     };
-
-    $scope.update = function(){
-
+    $scope.cancel = function(){
+        $scope.editing=false;
+    };
+    $scope.update = function(article){
+        $scope.editing=false;
+        $http.put('/admin/updateblog/'+article._id,article).success(function(response){
+            refresh();
+        });
     };
 })
 .controller('teamController',function($scope){
@@ -179,7 +193,6 @@ angular.module('WPApp')
             type: type,
             message: message,
             title:title
-
         };
         $timeout.cancel(alertTimeout);
         alertTimeout = $timeout(function(){

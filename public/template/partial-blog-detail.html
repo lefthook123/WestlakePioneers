@@ -25,9 +25,10 @@
 							</div>
 							<div class="well commentsbody">
 								<p>{{review.body}}</p>
+								<button class="btn btn-warning" ng-click="reply(this)" ng-hide="review.replying">Reply</button>
 								<div class="col-xs-12"><hr/>
 								</div>
-								<h5>Replies</h5>
+								<h5>Replies:</h5>
 								<div id="replies" ng-repeat="reply in review.replies">
 									<div>
 										<div>
@@ -37,9 +38,21 @@
 										<p>{{reply.body}}</p>
 									</div>
 								</div>
+								<div ng-show="review.replying" style="text-align:center">
+									<div style="text-align:left">
+										<span>Author:<input ng-model="newreply.author"></span>
+									</div>
+									<div>
+										Type your words:
+										<textarea style="width:100%" ng-model="newreply.body"></textarea>
+									</div>
+									<button class="btn btn-primary" ng-click="postReply(this)">Reply</button>
+									<button class="btn btn-danger" ng-click="cancel(this)">Cancel</button>
+								</div>
 							</div>
 						</div>
 					</div>
+					<button class="btn btn-danger" ng-click="comment()" ng-hide="commenting">Add a comment</button>
 				<div class="col-xs-12"><hr/>
 								</div>
 			</div>

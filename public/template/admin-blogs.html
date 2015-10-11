@@ -7,6 +7,11 @@
 					<label for="title" class="col-sm-2 control-label">Title:</label><br/>
 					<input id="title" class="col-sm-8" style="width:100%" ng-model="blog.title">
 				</div>
+				<div class="form-group" flow-init>
+					<div flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}"
+     ng-style="style">
+</div>
+				</div>
 				<div class="form-group">
 					<label for="author" class="col-sm-2 control-label">Author</label><br/>
 					<input id="author" class="col-sm-8"  style="width:100%"ng-model="blog.author">

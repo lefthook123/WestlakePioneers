@@ -42,9 +42,8 @@
 					<div ng-hide="editing">{{article.tags}}</div>
 					<input ng-show="editing" ng-model="article.tags">
 				</div>
-				<p class="well blogbody" ng-hide="editing">{{article.body}}</p>
+				<pre class="well blogbody" ng-hide="editing">{{article.body}}</pre>
 				<textarea rows="6" ng-show="editing" style="width:100%" ng-model="article.body"></textarea>
-
 				<div>
 					<button class="btn btn-warning" ng-hide="editing" ng-click="edit()">Edit</button>
 					<button class="btn btn-warning" ng-show="editing" ng-click="cancel()">Cancel</button>

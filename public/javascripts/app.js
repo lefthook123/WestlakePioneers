@@ -1,7 +1,14 @@
 (function(){
     'use strict';
 }());
-var app = angular.module('WPApp',["ui.router",'ngAnimate','ui.bootstrap','ngCookies','ngTouch','ngResource']);
+var app = angular.module('WPApp',[
+    "ui.router",
+    'ngAnimate',
+    'ui.bootstrap',
+    'ngCookies',
+    'ngTouch',
+    'ngResource',
+    'ngSanitize']);
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider){
 	$urlRouterProvider.otherwise('/home');
     $httpProvider.interceptors.push('AuthInterceptor');

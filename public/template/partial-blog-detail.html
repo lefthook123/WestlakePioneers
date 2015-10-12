@@ -11,7 +11,7 @@
 					<span><i class="fa fa-user"></i>{{selectedBlog.author}}</span>
 					<span><i class="fa fa-calendar"></i>{{selectedBlog.posttime|date:'medium'}}</span>
 				</div>
-				<pre class="well blogbody">{{selectedBlog.body}}</pre>
+				<pre ng-bind-html="selectedBlog.body | parseUrl" class="well blogbody"></pre>
 				<div id="review" style="text-align:left;">
 					<h3 id="Comments">Comments</h5>
 					<div id="CommentsNum">

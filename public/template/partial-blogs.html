@@ -15,7 +15,7 @@
 					<label>Tags:</label>
 					<div>{{article.tags}}</div>
 				</div>
-				<pre class="well blogbody">{{article.body|limitTo:500}}</pre>
+				<pre ng-bind-html="article.body | limitTo:500| parseUrl" class="well blogbody"></pre>
 				<div>
 					<div class="row">
 						<div class="pull-right">

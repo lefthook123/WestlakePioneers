@@ -13,6 +13,7 @@ var mongojs = require('mongojs');
 var config = require('./config');
 var User = require('./models/user');
 var Blog = require('./models/blog');
+var ToolGoogleMapUser = require('./models/toolGoogleMapUser.js');
 
 // =======================
 // configuration =========
@@ -55,7 +56,6 @@ app.use('/waiting',function(req,res,next){
 });
 
 app.get('/setup',function(req,res){
-
     var blog = new Blog({
             title:'Welcome to Westlake Pioneers',
             body:'Hello, I\'m building this website as fast as I can. \n I will be blogging things happening around me and the new technologies I am learning.',  
@@ -119,7 +119,6 @@ app.delete('/admin/deleteblog/:id',function(req,res){
     var id = req.params.id;
     var objectId = mongoose.Types.ObjectId(id);
     console.log('deleteblog request');
-    console.log('deleteblog request');
     Blog.find({_id:objectId}).remove(function(err,model){
         if(err){
             res.json('unable to remove');
@@ -166,14 +165,37 @@ app.post('/admin/postblog',function(req,res){
 });
 
 
-function article(title,body,pictures,reviews,posttime,author){
-    this.title = title;
-    this.body = body;
-    this.pictures = pictures;
-    this.reviews = reviews;
-    this.posttime = posttime;
-    this.author = author;
-}
+// Google Map START
+
+// GET Routes
+// --------------------------------------------------------
+// Retrieve records for all toolgooglemapusers in the db
+app.get('/toolgooglemapusers',function(req,res){
+    console.log('toolgooglemapusers get request');
+    var query = ToolGoogleMapUser.find({});
+    query.exec(function(err,toolgooglemapusers){
+        if(err)
+            res.send(err);
+        res.json(toolgooglemapusers);
+    });
+});
+
+// POST Routes
+// --------------------------------------------------------
+// Provides method for saving new users in the db
+
+app.post('/toolgooglemapusers',function(req,res){
+    console.log('toolgooglemapusers post request');
+    var newtoolgooglemapuser = new ToolGoogleMapUser(req.body);
+    newtoolgooglemapuser.save(function(err){
+        if(err)
+            res.send(err);
+        res.json(req.body);
+    });
+
+});
+
+// Google Map END
 
 app.get('/retrieveblogs', function(req, res){
 	console.log('blog get request');

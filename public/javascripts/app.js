@@ -2,13 +2,14 @@
     'use strict';
 }());
 var app = angular.module('WPApp',[
-    "ui.router",
+    'geolocation',
+    'ui.router',
     'ngAnimate',
     'ui.bootstrap',
     'ngCookies',
     'ngTouch',
-    'ngResource',
-    'ngSanitize']);
+    'ngSanitize',
+    'ngResource']);
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider){
 	$urlRouterProvider.otherwise('/home');
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -35,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         .state('tool-googlemaps', {
             url: '/tools/googlemaps',
             templateUrl: 'template/tools-googlemaps.html',
-            controller:'toolsGoogleMapsController as gmapctrl'
+            controller:'toolsGoogleMapController'
         })
         .state('blogdetail', {
             url: '/blogs/:blogTitle',

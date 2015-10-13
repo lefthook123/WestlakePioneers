@@ -201,6 +201,7 @@ angular.module('WPApp')
 })
 .controller('toolsGoogleMapController',function($scope,$http,$rootScope,geolocation,gservice){
     
+    $scope.pageClass = 'page-tools';
     // Initializes Variables
     // ----------------------------------------------------------------------------
     $scope.formData = {};

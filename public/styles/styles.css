@@ -93,12 +93,42 @@
 .page-blogs #replies{
     padding-left: 20px;
 }
+
+
+.page-tools .content {
+    margin-top: 40px 0;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.page-tools .content p + h4 {
+    margin-top: 28px;
+}
+
+.page-tools #map {
+    height: 645px;
+    width: 645px;
+    margin-top:50px;
+}
+
+.page-tools .header {
+    border-bottom: 1px solid #e5e5e5;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.page-tools .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+}
 /* PAGES (specific colors for each page)
 ============================================================================= */
 .page-home      { background:#00D0BC; color:#00907c; }
 .page-team     { background:#E59400; color:#1F1307; }
 .page-blogs     { background:#00D0BC; color:#1F1307; }
 .page-contact   { background:#ffa6bb; color:#9e0000; }
+.page-tools   { background:#ffa6bb; color:#9e0000; }
+
 
 .ng-enter       { z-index: 8888; }
 .ng-leave       { z-index: 9999; }

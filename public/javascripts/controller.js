@@ -199,4 +199,7 @@ angular.module('WPApp')
             $scope.alert.show = false;
         },timeout || 1500);
     }
+})
+.controller('toolsGoogleMapsController',function(){
+
 });

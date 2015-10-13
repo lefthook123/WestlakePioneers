@@ -10,7 +10,9 @@
     "multer": "^1.0.6",
     "nodemailer": "^1.4.0",
     "passport-local": "^1.0.0",
-    "sweetcaptcha": "0.0.2-1"
+    "sweetcaptcha": "0.0.2-1",
+    "jsonwebtoken": "^5.0.2",
+    "method-override": "~2.1.2"
   },
   "devDependencies": {},
   "scripts": {

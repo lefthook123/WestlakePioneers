@@ -32,6 +32,11 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
             templateUrl: 'template/partial-blogs.html',
             controller:'blogsController'
         })
+        .state('tool-googlemaps', {
+            url: '/tools/googlemaps',
+            templateUrl: 'template/tools-googlemaps.html',
+            controller:'toolsGoogleMapsController as gmapctrl'
+        })
         .state('blogdetail', {
             url: '/blogs/:blogTitle',
             templateUrl: 'template/partial-blog-detail.html',

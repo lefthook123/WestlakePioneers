@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
+var methodOverride  = require('method-override');
 //var multer = require('multer');
 var passport = require('passport');
 var mongojs = require('mongojs');
@@ -23,6 +24,7 @@ app.set('superSecret',config.secret);
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride());
 //app.use(multer({dest:'./public/images/'}));
 // use morgan to log requests to the console
 app.use(morgan('dev'));

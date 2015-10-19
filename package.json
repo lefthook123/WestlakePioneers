@@ -5,14 +5,14 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "jsonwebtoken": "^5.0.2",
+    "method-override": "~2.1.2",
     "mongoose": "^4.1.9",
     "morgan": "^1.6.1",
     "multer": "^1.0.6",
-    "nodemailer": "^1.4.0",
+    "nodemailer": "^1.8.0",
     "passport-local": "^1.0.0",
-    "sweetcaptcha": "0.0.2-1",
-    "jsonwebtoken": "^5.0.2",
-    "method-override": "~2.1.2"
+    "sweetcaptcha": "0.0.2-1"
   },
   "devDependencies": {},
   "scripts": {

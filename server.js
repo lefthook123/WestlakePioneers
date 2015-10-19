@@ -14,6 +14,7 @@ var config = require('./config');
 var User = require('./models/user');
 var Blog = require('./models/blog');
 var ToolGoogleMapUser = require('./models/toolGoogleMapUser.js');
+var nodemailer = require('nodemailer');
 
 // =======================
 // configuration =========
@@ -164,6 +165,50 @@ app.post('/admin/postblog',function(req,res){
 
 });
 
+
+
+//CONTACT
+app.post('/contact',function(req,res){
+
+    console.log(req.body);
+    console.log('received email request');
+    var mailOpts,smtpTrans;
+
+    //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
+    smtpTrans = nodemailer.createTransport('SMTP',{
+        service: 'Gmail',
+        auth:{
+            user:'zxw120230@gmail.com',
+            pass:'westlakepioneers'
+        }
+    });
+
+    //Mail options //Fred Foo ✔ <foo@blurdybloop.com>
+    mailOpts = {
+        from : req.body.name + ' ✔ <' + req.body.email + '>',
+        to: 'sf.jackwang@gmail.com',
+        subject: 'Westlake Pioneers ✔',
+        text: req.body.message+' ✔',
+        html: '<b>'+req.body.message+' ✔</b>' // html body
+    };
+
+    smtpTrans.sendMail(mailOpts, function (error, response) {
+
+        if (error) {
+            console.log(error);
+            res.send('Something must be wrong, please try again...');
+
+        }else{
+            console.log('Success');
+            res.send('Thank you for contacting us. We received your email!');
+        }
+
+    });
+
+
+});
+
+//
 
 // Google Map START
 

@@ -102,6 +102,7 @@ angular.module('WPApp')
         $scope.blog.pictures.push({'path': $scope.picturePaths});
         $http.post('/admin/postblog',$scope.blog).success(function(response){
             refresh();
+
         });
     };
     $scope.editing=false;
@@ -146,8 +147,16 @@ angular.module('WPApp')
     ];
     $scope.pageClass = 'page-about';
 })
-.controller('contactController',function($scope){
+.controller('contactController',function($scope,$http){
 	$scope.pageClass = 'page-contact';
+
+    $scope.sendEmail = function(){
+        $http.post('/contact',$scope.form).success(function(response){
+            $scope.form=null;
+            $scope.message = response;
+        });
+       
+    };
 })
 .controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
 

@@ -172,15 +172,23 @@ app.post('/contact',function(req,res){
 
     console.log(req.body);
     console.log('received email request');
+    /*
+    var generator = require('xoauth2').createXOAuth2Generator({
+        user: 'zxw120230@gmail.com',
+        clientId: '360476010879-jv4o487i67cshjh383ehc24q8m7hpfga.apps.googleusercontent.com',
+        clientSecret: 'LLgqxMTeiwd9ChEgHZRrUy3u',
+        refreshToken: '{refresh-token}',
+        accessToken: '{cached access token}' // optional
+    });*/
     var mailOpts,smtpTrans;
 
     //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
-    smtpTrans = nodemailer.createTransport('SMTP',{
+    smtpTrans = nodemailer.createTransport({
         service: 'Gmail',
         auth:{
             user:'zxw120230@gmail.com',
             pass:'westlakepioneers'
-        }
+        }   
     });
 
     //Mail options //Fred Foo ✔ <foo@blurdybloop.com>

@@ -1,0 +1,102 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json westlakepioneers@1.0.0 No description
+6 warn package.json westlakepioneers@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ 'C:\\Users\\Jack\\WestlakePioneers',
+8 verbose install   [ 'body-parser',
+8 verbose install     'express',
+8 verbose install     'jsonwebtoken',
+8 verbose install     'method-override',
+8 verbose install     'mongoose',
+8 verbose install     'morgan',
+8 verbose install     'multer',
+8 verbose install     'nodemailer',
+8 verbose install     'passport-local',
+8 verbose install     'sweetcaptcha' ] ]
+9 info preinstall westlakepioneers@1.0.0
+10 verbose readDependencies using package.json deps
+11 verbose already installed skipping body-parser@^1.14.1 C:\Users\Jack\WestlakePioneers
+12 verbose already installed skipping express@^4.13.3 C:\Users\Jack\WestlakePioneers
+13 verbose already installed skipping jsonwebtoken@^5.0.2 C:\Users\Jack\WestlakePioneers
+14 verbose already installed skipping method-override@~2.1.2 C:\Users\Jack\WestlakePioneers
+15 verbose already installed skipping mongoose@^4.1.9 C:\Users\Jack\WestlakePioneers
+16 verbose already installed skipping morgan@^1.6.1 C:\Users\Jack\WestlakePioneers
+17 verbose already installed skipping multer@^1.0.6 C:\Users\Jack\WestlakePioneers
+18 verbose cache add [ 'nodemailer@1.7.1', null ]
+19 verbose cache add name=undefined spec="nodemailer@1.7.1" args=["nodemailer@1.7.1",null]
+20 verbose parsed url { protocol: null,
+20 verbose parsed url   slashes: null,
+20 verbose parsed url   auth: null,
+20 verbose parsed url   host: null,
+20 verbose parsed url   port: null,
+20 verbose parsed url   hostname: null,
+20 verbose parsed url   hash: null,
+20 verbose parsed url   search: null,
+20 verbose parsed url   query: null,
+20 verbose parsed url   pathname: 'nodemailer@1.7.1',
+20 verbose parsed url   path: 'nodemailer@1.7.1',
+20 verbose parsed url   href: 'nodemailer@1.7.1' }
+21 verbose already installed skipping passport-local@^1.0.0 C:\Users\Jack\WestlakePioneers
+22 verbose already installed skipping sweetcaptcha@0.0.2-1 C:\Users\Jack\WestlakePioneers
+23 verbose cache add name="nodemailer" spec="1.7.1" args=["nodemailer","1.7.1"]
+24 verbose parsed url { protocol: null,
+24 verbose parsed url   slashes: null,
+24 verbose parsed url   auth: null,
+24 verbose parsed url   host: null,
+24 verbose parsed url   port: null,
+24 verbose parsed url   hostname: null,
+24 verbose parsed url   hash: null,
+24 verbose parsed url   search: null,
+24 verbose parsed url   query: null,
+24 verbose parsed url   pathname: '1.7.1',
+24 verbose parsed url   path: '1.7.1',
+24 verbose parsed url   href: '1.7.1' }
+25 verbose addNamed [ 'nodemailer', '1.7.1' ]
+26 verbose addNamed [ '1.7.1', '1.7.1' ]
+27 silly lockFile 5aad4963-nodemailer-1-7-1 nodemailer@1.7.1
+28 verbose lock nodemailer@1.7.1 C:\Users\Jack\AppData\Roaming\npm-cache\5aad4963-nodemailer-1-7-1.lock
+29 verbose request where is /nodemailer
+30 verbose request registry https://registry.npmjs.org/
+31 verbose request id d2f0cab29e6f770f
+32 verbose url raw /nodemailer
+33 verbose url resolving [ 'https://registry.npmjs.org/', './nodemailer' ]
+34 verbose url resolved https://registry.npmjs.org/nodemailer
+35 verbose request where is https://registry.npmjs.org/nodemailer
+36 info trying registry request attempt 1 at 19:28:37
+37 verbose etag "DD7XL75U4L4FMAQP7SMVHP3HI"
+38 http GET https://registry.npmjs.org/nodemailer
+39 http 304 https://registry.npmjs.org/nodemailer
+40 silly registry.get cb [ 304,
+40 silly registry.get   { date: 'Wed, 21 Oct 2015 02:28:34 GMT',
+40 silly registry.get     via: '1.1 varnish',
+40 silly registry.get     'cache-control': 'max-age=60',
+40 silly registry.get     etag: '"DD7XL75U4L4FMAQP7SMVHP3HI"',
+40 silly registry.get     age: '0',
+40 silly registry.get     connection: 'keep-alive',
+40 silly registry.get     'x-served-by': 'cache-sjc3133-SJC',
+40 silly registry.get     'x-cache': 'HIT',
+40 silly registry.get     'x-cache-hits': '1',
+40 silly registry.get     'x-timer': 'S1445394514.353090,VS0,VE85',
+40 silly registry.get     vary: 'Accept' } ]
+41 verbose etag https://registry.npmjs.org/nodemailer from cache
+42 silly lockFile 5aad4963-nodemailer-1-7-1 nodemailer@1.7.1
+43 silly lockFile 5aad4963-nodemailer-1-7-1 nodemailer@1.7.1
+44 error Error: version not found: nodemailer@1.7.1
+44 error     at C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:125:12
+44 error     at saved (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\get.js:167:7)
+44 error     at Object.oncomplete (fs.js:107:15)
+45 error If you need help, you may report this *entire* log,
+45 error including the npm and node versions, at:
+45 error     <http://github.com/npm/npm/issues>
+46 error System Windows_NT 6.2.9200
+47 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+48 error cwd C:\Users\Jack\WestlakePioneers
+49 error node -v v0.10.33
+50 error npm -v 1.4.28
+51 verbose exit [ 1, true ]

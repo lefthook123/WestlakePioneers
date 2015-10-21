@@ -184,7 +184,7 @@ app.post('/contact',function(req,res){
 
     //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
     smtpTrans = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'gmail',
         auth:{
             user:'zxw120230@gmail.com',
             pass:'SuperSecurity@888'

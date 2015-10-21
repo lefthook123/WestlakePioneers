@@ -116,6 +116,10 @@ app.post('/authenticate',function(req,res){
     });
 });
 
+
+
+//BLOG
+// --------------------------------------------------------
 app.delete('/admin/deleteblog/:id',function(req,res){
     var id = req.params.id;
     var objectId = mongoose.Types.ObjectId(id);
@@ -166,8 +170,8 @@ app.post('/admin/postblog',function(req,res){
 });
 
 
-
-//CONTACT
+//CONTACT US
+// --------------------------------------------------------
 app.post('/contact',function(req,res){
 
     console.log(req.body);
@@ -212,8 +216,6 @@ app.post('/contact',function(req,res){
         }
 
     });
-
-
 });
 
 //

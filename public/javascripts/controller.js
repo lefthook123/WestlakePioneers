@@ -174,16 +174,17 @@ angular.module('WPApp')
     $scope.login = function() {
         console.log($scope.credential);
         $http.post('/authenticate',$scope.credential).then(function success(response){
+            console.log(response.data.token);
             AuthToken.setToken(response.data.token);
             $scope.user = response.data.user;
             $scope.alreadyLoggedIn = true;
-            showAlert('success', 'Hey there!', 'Welcome ' + $scope.user.username + '!');
+            console.log('success', 'Hey there!', 'Welcome ' + $scope.user.email + '!');
         },function error(response){
             if(response.status===404){
                 $scope.badCreds=true;
-                showAlert('danger', 'Whoops...', 'Do I know you?');
+                console.log('danger', 'Whoops...', 'Do I know you?');
             }else{
-                showAlert('danger', 'Hmmm....', 'Problem logging in! Sorry!');
+                console.log('danger', 'Hmmm....', 'Problem logging in! Sorry!');
             }
         });
     };

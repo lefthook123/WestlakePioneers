@@ -207,7 +207,7 @@ angular.module('WPApp')
 			var token = AuthToken.getToken();
 			if(token){
 				config.headers = config.headers || {};
-				config.headers.Authorization = 'Bearer '+token;
+				config.headers.Authorization = token;
 			}
 			return config;
 		},

@@ -37,9 +37,11 @@ app.use(morgan('dev'));
 // =======================
 // basic route
 // route middleware to verify a token
-app.use('/waiting',function(req,res,next){
+app.use('/admin/',function(req,res,next){
     // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log('Request admin content...');
+    var token = req.body.token || req.query.token || req.headers.authorization;
+    console.log('token: '+token);
     if(token){
         jwt.verify(token,app.get('superSecret'),function(err,decoded){
             if(err){
@@ -156,6 +158,7 @@ app.post('/authenticate',function(req,res){
     User.findOne({
         email:req.body.email
     },function(err,user){
+        console.log(user);
         if(err) throw err;
         if(!user){
             res.json(404,'Authentication failed. User not found');
@@ -168,7 +171,7 @@ app.post('/authenticate',function(req,res){
                 });
 
                 res.json(
-                    200,{token:token,user:user}
+                    {token:token,user:user}
                 );
             }
         }

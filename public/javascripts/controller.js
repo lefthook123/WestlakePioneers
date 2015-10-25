@@ -3,6 +3,7 @@
 }());
 angular.module('WPApp')
 
+//controller for index.html 
 .controller('mainController',function($scope){
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
@@ -45,6 +46,7 @@ angular.module('WPApp')
         description:['Targeted List Development','Predictive Modeling','CRM Development / Customization']},
     ];
 })
+//controller for partial-blogs.html
 .controller('blogsController',function($scope,$http){	
     $scope.pageClass = 'page-blogs';
     $scope.articles=[];
@@ -61,6 +63,7 @@ angular.module('WPApp')
         return Math.ceil($scope.articles.length/$scope.pageSize);
     };
 })
+//controller for partial-blog-detail.html
 .controller('blogsDetailController',function($scope,$http,$stateParams){ 
     $scope.pageClass = 'page-blogs';
     var title = $stateParams.blogTitle;
@@ -77,8 +80,8 @@ angular.module('WPApp')
     $scope.postReply=function(){
     };
 })
-.controller('adminblogsController',function($scope,$http){
-    
+//controller for admin-blogs.html
+.controller('adminblogsController',function($scope,$http){    
     var refresh = function(){
             $http.get('/retrieveblogs').success(function(response){
             $scope.articles = response;
@@ -119,6 +122,7 @@ angular.module('WPApp')
         });
     };
 })
+//controller for partial-team.html
 .controller('teamController',function($scope){
     $scope.pageClass = 'page-team';
     $scope.managers= [       
@@ -129,6 +133,7 @@ angular.module('WPApp')
         description:'Technology evangelist on \'Salesforce CRM\', \'Web Development\''}     
     ];
 })
+//controller for partial-about.html
 .controller('aboutController',function($scope){
 	$scope.message = 'Look! I am an about page.';
 	$scope.scotches = [
@@ -147,6 +152,7 @@ angular.module('WPApp')
     ];
     $scope.pageClass = 'page-about';
 })
+//controller for partial-contact.html
 .controller('contactController',function($scope,$http){
 	$scope.pageClass = 'page-contact';
 
@@ -158,21 +164,16 @@ angular.module('WPApp')
        
     };
 })
+//controller for login.html
 .controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
 
     $scope.badCreds = false;
     $scope.cancel = function() {
         $scope.$dismiss();
     };
-    $scope.login = function(email,password) {
-        $http({
-            url:'authenticate',
-            method:'POST',
-            data:{
-                email:email,
-                password:password
-            }
-        }).then(function success(response){
+    $scope.login = function() {
+        console.log($scope.credential);
+        $http.post('/authenticate',$scope.credential).then(function success(response){
             AuthToken.setToken(response.data.token);
             $scope.user = response.data.user;
             $scope.alreadyLoggedIn = true;
@@ -284,4 +285,42 @@ angular.module('WPApp')
             
     };
   
+})
+.controller('adminusersController',function($scope,$http){
+    $scope.pageClass = 'page-contact';
+    var refresh = function(){
+            $http.get('/admin/retrieveusers').success(function(response){
+
+            $scope.usrs = response;
+            //console.log('USERS:');
+            //console.log($scope.usrs);
+            $scope.newuser=null;
+        });
+    };
+    refresh();
+    $scope.pageClass = 'page-adminuser';    
+    $scope.remove = function(id){
+        $http.delete('/admin/deleteuser/'+id).success(function(response){
+            refresh();
+        });
+    };
+    $scope.addUser=function(){
+        $http.post('/admin/postuser',$scope.newuser).success(function(response){
+            refresh();
+        });
+    };
+    $scope.editing=false;
+    $scope.edit = function(){
+        $scope.editing=true;
+    };
+    $scope.cancel = function(){
+        $scope.editing=false;
+    };
+    $scope.update = function(user){
+        $scope.editing=false;
+        $http.put('/admin/updateuser/'+usr._id,usr).success(function(response){
+            refresh();
+        });
+    };
+    
 });

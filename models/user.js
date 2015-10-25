@@ -9,5 +9,8 @@ module.exports = mongoose.model('User', new Schema({
     admin: Boolean,
     company: String,
     latestLoginTime:Date,
-    latestLoginIP:String 
+    latestLoginIP:String,
+    createddate:Date,
+    createdby:String,
+    isactive: Boolean
 }));

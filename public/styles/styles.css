@@ -121,6 +121,11 @@
     line-height: 40px;
     padding-bottom: 19px;
 }
+
+
+.page-adminuser td,th{
+    margin:10px;
+}
 /* PAGES (specific colors for each page)
 ============================================================================= */
 .page-home      { background:#00D0BC; color:#00907c; }

@@ -82,6 +82,11 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
             url: '/admin/blogs',
             templateUrl: 'template/admin-blogs.html',
             controller:'adminblogsController'       
+        })
+        .state('admin-users', {
+            url: '/admin/users',
+            templateUrl: 'template/admin-users.html',
+            controller:'adminusersController'       
         });
         $locationProvider.html5Mode(true);
 });

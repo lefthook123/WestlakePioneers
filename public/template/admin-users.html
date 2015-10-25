@@ -1,0 +1,47 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<h4>Create a new user</h4>
+			<form role="form">
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input id="email" class="form-control" ng-model="newuser.email">
+				</div>
+				<div class="form-group">
+					<label for="admin">Admin:</label>
+					<input id="admin" class="form-control"  type="checkbox" ng-model="newuser.admin">
+				</div>
+				<div class="form-group">
+					<label for="company">Company:</label>
+					<input id="company" class="form-control" ng-model="newuser.company">
+				</div>
+				<button class="btn btn-primary" ng-click="addUser()">Add User</button>
+			</form>
+			<hr>
+		</div>
+
+		<div class="col-md-8" >
+			<table class="table">
+				<tr>
+					<th>Email</th>
+					<th>Company</th>
+					<th>isAdmin</th>
+					<th>isActive</th>
+				</tr>
+				<tr ng-repeat="usr in usrs">
+					<td ng-hide="editing">{{usr.email}}</td><td ng-show="editing"><input type="email" ng-model="usr.email"></td>
+					<td ng-hide="editing">{{usr.company}}</td><td ng-show="editing"><input type="text" ng-model="usr.company"></td>
+					<td ng-hide="editing"><input type="checkbox" disabled="disabled" checked="usr.admin"></td><td ng-show="editing"><input type="checkbox" ng-model="usr.admin"></li></td>
+					<td ng-hide="editing"><input type="checkbox" disabled="disabled" checked="usr.isactive"></td><td ng-show="editing"><input type="checkbox" ng-model="usr.isactive"></li></td>
+					<td><button class="btn btn-warning" ng-hide="editing" ng-click="edit()">Edit</button></td>
+					<td><button class="btn btn-warning" ng-show="editing" ng-click="cancel()">Cancel</button></td>
+					<td ng-show="editing"><button class="btn btn-info" ng-click="update(usr)">Update</button></td>
+					<td><button class="btn btn-danger" ng-click="remove(usr._id)">Remove</button></td>
+				</tr>
+			</table>
+
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</div>

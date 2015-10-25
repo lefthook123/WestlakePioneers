@@ -13,6 +13,7 @@ var mongojs = require('mongojs');
 var config = require('./config');
 var User = require('./models/user');
 var Blog = require('./models/blog');
+var Member = require('./models/member');
 var ToolGoogleMapUser = require('./models/toolGoogleMapUser.js');
 var nodemailer = require('nodemailer');
 
@@ -93,9 +94,67 @@ app.get('/setup',function(req,res){
     });
 });
 
+
+//USER
+// --------------------------------------------------------
+app.post('/admin/postuser',function(req,res){
+    var reqBody=req.body;
+    var user = new User({
+            email:reqBody.email,
+            password:'Password',
+            admin:reqBody.admin,
+            company:reqBody.company,
+            createddate:Date.now(),
+            createdby:reqBody.createdby,
+            isactive:true
+    });
+    user.save(function(err){
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        console.log('User saved successfully');
+        res.json({success: true});
+    });
+});
+app.delete('/admin/deleteuser/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('deleteuser request');
+    User.find({_id:objectId}).remove(function(err,model){
+        if(err){
+            res.json('unable to remove');
+        }else{
+            res.json(model);
+        }
+    });
+});
+app.put('/admin/updateuser/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('updateuser request');
+    var blogbody = req.body.body;
+    var blogtags=req.body.tags;
+    Blog.findOneAndUpdate(
+        {_id:objectId},
+        {
+            body:blogbody,
+            tags:blogtags
+        },function(err,article){
+            if(err)throw err;
+        });
+});
+app.get('/admin/retrieveusers', function(req, res){
+    console.log('users get request');
+    User.find({},function(err,users){
+        console.log(users);
+        res.json(users);
+    });
+});
 app.post('/authenticate',function(req,res){
+    console.log('login post request!');
     User.findOne({
-        name:req.body.name
+        email:req.body.email
     },function(err,user){
         if(err) throw err;
         if(!user){
@@ -116,6 +175,64 @@ app.post('/authenticate',function(req,res){
     });
 });
 
+//TEAM
+// --------------------------------------------------------
+app.post('/admin/postmember',function(req,res){
+    var reqBody=req.body;
+    var member = new Member({
+            title:reqBody.title,
+            bio:reqBody.bio,
+            photo:reqBody.photo,
+            name:reqBody.name,
+            email:reqBody.email,
+            DateJoined:reqBody.DateJoined,
+            linkedin:reqBody.linkedin,
+            blog:reqBody.blog,
+            facebook:reqBody.facebook
+    });
+    member.save(function(err){
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        console.log('Member saved successfully');
+        res.json({success: true});
+    });
+});
+app.delete('/admin/deletemember/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('deletemember request');
+    Member.find({_id:objectId}).remove(function(err,model){
+        if(err){
+            res.json('unable to remove');
+        }else{
+            res.json(model);
+        }
+    });
+});
+app.put('/admin/updatemember/:id',function(req,res){
+    var id = req.params.id;
+    var objectId = mongoose.Types.ObjectId(id);
+    console.log('updateuser request');
+    var memberbody = req.body.body;
+    var blogtags=req.body.tags;
+    Member.findOneAndUpdate(
+        {_id:objectId},
+        {
+            body:blogbody,
+            tags:blogtags
+        },function(err,article){
+            if(err)throw err;
+        });
+});
+app.get('/admin/retrievemembers', function(req, res){
+    console.log('members get request');
+    Members.find({},function(err,members){
+        console.log(members);
+        res.json(members);
+    });
+});
 
 
 //BLOG
@@ -166,7 +283,20 @@ app.post('/admin/postblog',function(req,res){
         console.log('Blog saved successfully');
         res.json({success: true});
     });
-
+});
+app.get('/retrieveblogs', function(req, res){
+    console.log('blog get request');
+    Blog.find({},function(err,blogs){
+        console.log(blogs);
+        res.json(blogs);
+    });
+});
+app.get('/retrieveblogs/:title', function(req, res){
+    var title = req.params.title;
+    console.log('single blog get request');
+    Blog.findOne({title:title},function(err,blog){
+        res.json(blog);
+    });
 });
 
 
@@ -252,20 +382,6 @@ app.post('/toolgooglemapusers',function(req,res){
 
 // Google Map END
 
-app.get('/retrieveblogs', function(req, res){
-	console.log('blog get request');
-    Blog.find({},function(err,blogs){
-        console.log(blogs);
-        res.json(blogs);
-    });
-});
-app.get('/retrieveblogs/:title', function(req, res){
-    var title = req.params.title;
-    console.log('single blog get request');
-    Blog.findOne({title:title},function(err,blog){
-        res.json(blog);
-    });
-});
 
 app.use(express.static(__dirname + "/public"));
 app.all('/*', function(req, res, next) {
@@ -273,7 +389,7 @@ app.all('/*', function(req, res, next) {
     res.sendFile('/public/index.html', { root: __dirname });
 });
 
-/*
+
 // setup cors
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -281,7 +397,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-*/
+
 /*
 // setup passport
 passport.use(new LocalStrategy(function(username, password, done) {

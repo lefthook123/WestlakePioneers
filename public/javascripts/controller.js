@@ -179,14 +179,11 @@ angular.module('WPApp')
             $scope.user = response.data.user;
             $scope.alreadyLoggedIn = true;
             console.log('success', 'Hey there!', 'Welcome ' + $scope.user.email + '!');
+            $scope.$dismiss();
         },function error(response){
-            if(response.status===404){
-                $scope.badCreds=true;
-                console.log('danger', 'Whoops...', 'Do I know you?');
-            }else{
-                console.log('danger', 'Hmmm....', 'Problem logging in! Sorry!');
-            }
+            $scope.message='Problem logging in! Sorry!';          
         });
+
     };
 
     $scope.logout = function(){

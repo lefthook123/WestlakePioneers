@@ -23,7 +23,6 @@ var nodemailer = require('nodemailer');
 var port = Number(process.env.PORT || 3000);
 mongoose.connect(config.database);
 app.set('superSecret',config.secret);
-
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

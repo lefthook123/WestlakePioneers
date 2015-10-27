@@ -4,6 +4,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
     "jsonwebtoken": "^5.0.2",
     "method-override": "~2.1.2",
@@ -12,6 +13,8 @@
     "multer": "^1.0.6",
     "nodemailer": "^1.8.0",
     "passport-local": "^1.0.0",
+    "redis": "^2.2.5",
+    "share": "^0.7.40",
     "sweetcaptcha": "0.0.2-1"
   },
   "devDependencies": {},

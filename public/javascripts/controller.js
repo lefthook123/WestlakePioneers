@@ -4,9 +4,10 @@
 angular.module('WPApp')
 
 //controller for index.html 
-.controller('mainController',function($scope){
+.controller('mainController',function($scope,$rootScope){
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
+
     var slides = $scope.slides = [
         {
             image: 'images/home-carousel5.png',
@@ -47,7 +48,7 @@ angular.module('WPApp')
     ];
 })
 //controller for partial-blogs.html
-.controller('blogsController',function($scope,$http){	
+.controller('blogsController',function($scope,$http,$state){	
     $scope.pageClass = 'page-blogs';
     $scope.articles=[];
     var refresh = function(){
@@ -176,20 +177,19 @@ angular.module('WPApp')
         $http.post('/authenticate',$scope.credential).then(function success(response){
             console.log(response.data.token);
             AuthToken.setToken(response.data.token);
-            $scope.user = response.data.user;
+            $scope.currentuser = response.data.user;
             $scope.alreadyLoggedIn = true;
-            console.log('success', 'Hey there!', 'Welcome ' + $scope.user.email + '!');
-            $scope.$dismiss();
+            console.log('success', 'Hey there!', 'Welcome ' + $scope.currentuser.email + '!');            
+            $scope.$close();          
         },function error(response){
             $scope.message='Problem logging in! Sorry!';          
         });
-
     };
 
     $scope.logout = function(){
         AuthToken.clearToken();
-        $scope.user = null;
-        showAlert('info','Goodbye!','Have a great day!');
+        $scope.currentuser = null;
+        //showAlert('info','Goodbye!','Have a great day!');
     };
 
     var alertTimeout;
@@ -321,4 +321,7 @@ angular.module('WPApp')
         });
     };
     
+})
+.controller('toolsMarkdownViewerController',function($scope,$http){
+    $scope.pageClass = 'page-markdownviewer';
 });

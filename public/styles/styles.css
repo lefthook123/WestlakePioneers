@@ -123,6 +123,28 @@
 }
 
 
+.page-markdownviewer html, body, section, .full-height {
+    height: 100%;
+}
+
+
+.page-markdownviewer #pad{
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+
+    border: none;
+    overflow: auto;
+    outline: none;
+    resize: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.page-markdownviewer #markdown {
+    overflow: auto;
+    border-left: 1px solid black;
+}
 .page-adminuser td,th{
     margin:10px;
 }

@@ -33,10 +33,15 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
             templateUrl: 'template/partial-blogs.html',
             controller:'blogsController'
         })
-        .state('tool-googlemaps', {
-            url: '/tools/googlemaps',
-            templateUrl: 'template/tools-googlemaps.html',
+        .state('project-googlemaps', {
+            url: '/projects/googlemaps',
+            templateUrl: 'template/projects-googlemaps.html',
             controller:'toolsGoogleMapController'
+        })
+        .state('project-markdownviewer', {
+            url: '/projects/markdownviewer',
+            templateUrl: 'template/projects-markdownviewer.html',
+            controller:'toolsMarkdownViewerController'
         })
         .state('blogdetail', {
             url: '/blogs/:blogTitle',
@@ -50,14 +55,21 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         })
         .state('login', {
             url: '/login',
+            parent:'home',
             onEnter:['$stateParams','$state','$modal','$resource',function($stateParams,$state, $modal, $resource){
                 $modal.open({
                     animation: true,
                     size:'',
                     templateUrl: 'login/login.html',
                     controller:'loginController'
-                }).result.finally(function(){
-                    $state.go('home',{});
+                }).result.then(function(){
+                    console.log('promise resolved success');
+                    $state.go('admin-dashboard',{});
+                },function(){
+                    console.log('promise rejected fail');
+                }).finally(function(){
+                    console.log('promise finally');
+                    //$state.go('home',{});
                 });
             }]                        
         })
@@ -87,6 +99,33 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
             url: '/admin/users',
             templateUrl: 'template/admin-users.html',
             controller:'adminusersController'       
+        })
+        .state('projects', {
+            url: '/projects',
+            templateUrl: 'template/partial-projects.html',
+            authenticate:true       
+        })
+        .state('admin-dashboard', {
+            url: '/admin/dashboard',
+            templateUrl: 'template/admin-dashboard.html',
+            authenticate:true       
         });
+        //$rootScope.currentuser=null;
         $locationProvider.html5Mode(true);
 });
+
+/*
+.run(function($rootScope,$location,AuthToken){
+    $rootScope.$on('$stateChangeStart',function(event,toState,toParams){
+        console.log('$stateChangeStart:');
+        console.log(toState);
+        console.log('Token: '+AuthToken.getToken());
+        console.log('AuthToken.isAuthenticated: '+AuthToken.isAuthenticated());
+        if(toState.authenticate&&!AuthToken.isAuthenticated()){
+            console.log('Here we go:');
+            //$rootScope.returnToState = toState.url;
+            //$rootScope.returnToStateParams = toParams.Id;
+            $location.path('/home');
+        }
+    });
+});*/

@@ -55,16 +55,20 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         })
         .state('login', {
             url: '/login',
-            parent:'home',
-            onEnter:['$stateParams','$state','$modal','$resource',function($stateParams,$state, $modal, $resource){
+            onEnter:['$stateParams','$state','$modal','$resource','$rootScope',function($stateParams,$state, $modal, $resource,$rootScope){
                 $modal.open({
                     animation: true,
                     size:'',
                     templateUrl: 'login/login.html',
                     controller:'loginController'
-                }).result.then(function(){
-                    console.log('promise resolved success');
-                    $state.go('admin-dashboard',{});
+                }).result.then(function(result){
+                    if(result==='loggedin'){
+                        $state.go($rootScope.returnToState,{});
+                    }
+                    else if(result==='canceled'){
+                        $state.go('home',{});
+                    }
+                    
                 },function(){
                     console.log('promise rejected fail');
                 }).finally(function(){
@@ -93,17 +97,19 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         .state('admin-blogs', {
             url: '/admin/blogs',
             templateUrl: 'template/admin-blogs.html',
-            controller:'adminblogsController'       
+            controller:'adminblogsController',
+            authenticate:true        
         })
         .state('admin-users', {
             url: '/admin/users',
             templateUrl: 'template/admin-users.html',
-            controller:'adminusersController'       
+            controller:'adminusersController',
+            authenticate:true        
         })
         .state('projects', {
             url: '/projects',
             templateUrl: 'template/partial-projects.html',
-            authenticate:true       
+            authenticate:false       
         })
         .state('admin-dashboard', {
             url: '/admin/dashboard',
@@ -112,20 +118,15 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         });
         //$rootScope.currentuser=null;
         $locationProvider.html5Mode(true);
-});
+})
 
-/*
-.run(function($rootScope,$location,AuthToken){
-    $rootScope.$on('$stateChangeStart',function(event,toState,toParams){
-        console.log('$stateChangeStart:');
-        console.log(toState);
-        console.log('Token: '+AuthToken.getToken());
-        console.log('AuthToken.isAuthenticated: '+AuthToken.isAuthenticated());
+
+.run(function($rootScope,$location,AuthToken,$state){
+    $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
         if(toState.authenticate&&!AuthToken.isAuthenticated()){
-            console.log('Here we go:');
-            //$rootScope.returnToState = toState.url;
-            //$rootScope.returnToStateParams = toParams.Id;
-            $location.path('/home');
+            event.preventDefault();
+            $rootScope.returnToState = toState.name;
+            $state.go('login');
         }
     });
-});*/
+});

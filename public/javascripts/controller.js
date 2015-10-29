@@ -4,10 +4,21 @@
 angular.module('WPApp')
 
 //controller for index.html 
-.controller('mainController',function($scope,$rootScope){
+.controller('mainController',function($scope,AuthToken,$state){
+    console.log('Entered mainController');
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
-
+    $scope.currentUser=AuthToken.getcurrentUser();
+    $scope.$watch(AuthToken.getcurrentUser,function(currentUser){
+        $scope.currentUser = currentUser;
+    });    
+    $scope.logout = function(){
+        console.log('log out');
+        AuthToken.clearToken();
+        AuthToken.clearcurrentUser();
+        $scope.currentUser = null;
+        $state.go('home',{});
+    };
     var slides = $scope.slides = [
         {
             image: 'images/home-carousel5.png',
@@ -167,30 +178,27 @@ angular.module('WPApp')
 })
 //controller for login.html
 .controller('loginController',function($scope,$http,$timeout,AuthToken,$window){
-
+    console.log('Entered loginController');
     $scope.badCreds = false;
     $scope.cancel = function() {
-        $scope.$dismiss();
+        $scope.$close('canceled');  
     };
     $scope.login = function() {
         console.log($scope.credential);
         $http.post('/authenticate',$scope.credential).then(function success(response){
             console.log(response.data.token);
             AuthToken.setToken(response.data.token);
+            AuthToken.setcurrentUser(response.data.user);
             $scope.currentuser = response.data.user;
             $scope.alreadyLoggedIn = true;
             console.log('success', 'Hey there!', 'Welcome ' + $scope.currentuser.email + '!');            
-            $scope.$close();          
+            $scope.$close('loggedin');          
         },function error(response){
             $scope.message='Problem logging in! Sorry!';          
         });
     };
 
-    $scope.logout = function(){
-        AuthToken.clearToken();
-        $scope.currentuser = null;
-        //showAlert('info','Goodbye!','Have a great day!');
-    };
+
 
     var alertTimeout;
     function showAlert(type,title,message,timeout){

@@ -36,7 +36,7 @@ app.use(morgan('dev'));
 // =======================
 // basic route
 // route middleware to verify a token
-app.use('/admin/',function(req,res,next){
+app.use('/waiting/',function(req,res,next){
     // check header or url parameters or post parameters for token
     console.log('Request admin content...');
     var token = req.body.token || req.query.token || req.headers.authorization;

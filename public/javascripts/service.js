@@ -171,20 +171,49 @@ angular.module('WPApp')
 	google.maps.event.addDomListener(window, 'load',googleMapService.refresh(selectedLat, selectedLong));
 	return googleMapService;
 }])
+.factory('CurrentUser',function(){
+	var user;
+	return{
+
+	};
+})
 .factory('AuthToken',function($window){
+	console.log('Entered AuthToken Factory');
 	var tokenKey = 'user-token';
+	var emailKey = 'user-email';
 	var storage = $window.localStorage;
 	var cachedToken;
+	var cachedUser;
 	return{
 		isAuthenticated: isAuthenticated,
 		setToken: setToken,
 		getToken: getToken,
-		clearToken: clearToken
+		clearToken: clearToken,
+		getcurrentUser: getcurrentUser,
+		setcurrentUser:setcurrentUser,
+		clearcurrentUser:clearcurrentUser
 	};
+	function getcurrentUser(){
+		if(!cachedUser){
+			cachedUser=storage.getItem(emailKey);
+		}
+		return cachedUser;
+	}
+	function setcurrentUser(user){
+		console.log('AuthToken set user: '+user.email);
+		cachedUser = user.email;
+		storage.setItem(emailKey,user.email);
+	}
+    function clearcurrentUser(){
+    	console.log('AuthToken clearcurrentUser: ');
+    	cachedUser=null;
+    	storage.removeItem(emailKey);
+    }
 	function setToken(token){
 		cachedToken = token;
 		storage.setItem(tokenKey,token);
 	}
+
 	function getToken(){
 		if(!cachedToken){
 			cachedToken = storage.getItem(tokenKey);
@@ -196,6 +225,7 @@ angular.module('WPApp')
 		storage.removeItem(tokenKey);
 	}
 	function isAuthenticated(){
+		console.log('AuthToken isAuthenticated: ');
 		return !!getToken();
 	}
 

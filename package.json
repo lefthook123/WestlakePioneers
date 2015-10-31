@@ -13,6 +13,7 @@
     "multer": "^1.0.6",
     "nodemailer": "^1.8.0",
     "passport-local": "^1.0.0",
+    "prerender-node": "^2.1.0",
     "redis": "^2.2.5",
     "share": "^0.7.40",
     "sweetcaptcha": "0.0.2-1"

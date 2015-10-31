@@ -112,6 +112,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         });
         //$rootScope.currentuser=null;
         $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('!');
 });
 
 /*

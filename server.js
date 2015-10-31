@@ -31,6 +31,10 @@ app.use(methodOverride());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
+
+//Making AJAX applications crawlable
+app.use(require('prerender-node').set('prerenderToken', 'JnRlGTVr2vqIe9LleEWv'));
+
 // =======================
 // routes ================
 // =======================

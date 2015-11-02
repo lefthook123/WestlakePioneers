@@ -27,8 +27,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">Westlake Pioneers</a>
-					<a ng-show="currentUser" class="navbar-brand" href="#">{{currentUser}}</a>
-					<a class="navbar-brand" ui-sref="admin-dashboard">My Dashboard</a>					
+				
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -41,6 +40,12 @@
 		                <li ng-show="currentUser"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>Sign Out</a></li>
 		            </ul>
 	            </div>
+			</div>
+		</div>
+		<div class="navbar navbar-default">
+			<div>
+				<a ng-show="currentUser" class="navbar-brand" href="#">{{currentUser}}</a>
+				<a class="navbar-brand" ui-sref="admin-dashboard">My Dashboard</a>	
 			</div>
 		</div>
 	</header>

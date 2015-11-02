@@ -42,7 +42,7 @@ angular.module('WPApp')
         }
     ];
 	$scope.pageClass = 'page-home';
-
+    
     $scope.services= [
         {name:'GROWTH CONSULTING',
         alt:'consulting-growth',

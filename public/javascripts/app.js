@@ -63,7 +63,16 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
                     controller:'loginController'
                 }).result.then(function(result){
                     if(result==='loggedin'){
-                        $state.go($rootScope.returnToState,{});
+                        if(typeof $rootScope.returnToState != 'undefined'&&$rootScope.returnToState!==null){
+                            $state.go($rootScope.returnToState,{});
+                            $rootScope.returnToState=null;
+                        }
+                        else{
+                            console.log('ELSE:'+ $rootScope.returnToState);
+                            $state.go('admin-dashboard',{});
+
+                        }
+                        
                     }
                     else if(result==='canceled'){
                         $state.go('home',{});
@@ -125,8 +134,8 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
 .run(function($rootScope,$location,AuthToken,$state){
     $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
         if(toState.authenticate&&!AuthToken.isAuthenticated()){
-            event.preventDefault();
             $rootScope.returnToState = toState.name;
+            event.preventDefault();
             $state.go('login');
         }
     });

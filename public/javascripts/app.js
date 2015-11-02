@@ -118,8 +118,13 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpPr
         });
         //$rootScope.currentuser=null;
         $locationProvider.html5Mode(true);
+<<<<<<< HEAD
 })
 
+=======
+        $locationProvider.hashPrefix('!');
+});
+>>>>>>> origin/master
 
 .run(function($rootScope,$location,AuthToken,$state){
     $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){

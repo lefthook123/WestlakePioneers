@@ -16,6 +16,7 @@
     "prerender-node": "^2.1.0",
     "redis": "^2.2.5",
     "share": "^0.7.40",
+    "sparkpost": "^1.1.0",
     "sweetcaptcha": "0.0.2-1"
   },
   "devDependencies": {},

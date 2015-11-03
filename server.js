@@ -1,3 +1,6 @@
+(function(){
+    'use strict';
+}());
 //Require Deps
 var express = require("express");
 var app = express();

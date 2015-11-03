@@ -1,3 +1,6 @@
+(function(){
+    'use strict';
+}());
 var Blog = require('../models/blog');
 var mongoose = require("mongoose");
 module.exports = function(app){

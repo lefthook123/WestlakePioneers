@@ -10,9 +10,16 @@ var app = angular.module('WPApp',[
     'ngTouch',
     'ngSanitize',
     'ngResource']);
-app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider){
+app.config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider,$urlMatcherFactoryProvider){
+    /*var blogTitleType = {
+        encode: function(str){return str&&str.replace(/ /g,"-");},
+        decode: function(str){return str&&str.replace(/-/g," ");},
+        is: angular.isString,
+        pattern:/[^/]+/
+    }; */
 	$urlRouterProvider.otherwise('/home');
     $httpProvider.interceptors.push('AuthInterceptor');
+    //$urlMatcherFactoryProvider.type('blogTitle', blogTitleType);
 	$stateProvider        
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {

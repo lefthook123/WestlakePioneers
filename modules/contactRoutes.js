@@ -8,7 +8,6 @@ var SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY||config.SPARKPOST_API_KEY;
 var SPARKPOST_SANDBOX_DOMAIN = process.env.SPARKPOST_SANDBOX_DOMAIN||config.SPARKPOST_SANDBOX_DOMAIN;
 var client = new SparkPost(SPARKPOST_API_KEY);
 var from = 'admin@'+'westlakepioneers.com';
-
 module.exports = function(app){
 //CONTACT US
 // --------------------------------------------------------

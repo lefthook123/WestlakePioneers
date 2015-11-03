@@ -2,7 +2,7 @@
 /* positioned absolutely so that the pages can overlap each other as they enter and leave */
 .page        {
     bottom:0; 
-    padding-top:50px;
+    padding-top:100px;
     position:relative; 
     text-align:center;
     top:0;  

@@ -14,6 +14,7 @@ var methodOverride  = require('method-override');
 var passport = require('passport');
 var config = require('./config');
 
+
 // =======================
 // configuration =========
 // =======================
@@ -37,8 +38,6 @@ app.use(methodOverride());
 //app.use(multer({dest:'./public/images/'}));
 // use morgan to log requests to the console
 app.use(morgan('dev'));
-
-
 
 //Making AJAX applications crawlable
 app.use(require('prerender-node').set('prerenderToken', 'JnRlGTVr2vqIe9LleEWv'));

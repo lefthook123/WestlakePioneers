@@ -1,0 +1,75 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'jforce' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json westlakepioneers@1.0.0 No description
+6 warn package.json westlakepioneers@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'jforce', null ]
+9 verbose cache add name=undefined spec="jforce" args=["jforce",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'jforce',
+10 verbose parsed url   path: 'jforce',
+10 verbose parsed url   href: 'jforce' }
+11 silly lockFile da9150ab-jforce jforce
+12 verbose lock jforce C:\Users\Jack\AppData\Roaming\npm-cache\da9150ab-jforce.lock
+13 silly lockFile da9150ab-jforce jforce
+14 silly lockFile da9150ab-jforce jforce
+15 verbose addNamed [ 'jforce', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile d77d3d9b-jforce jforce@
+18 verbose lock jforce@ C:\Users\Jack\AppData\Roaming\npm-cache\d77d3d9b-jforce.lock
+19 silly addNameRange { name: 'jforce', range: '*', hasData: false }
+20 verbose request where is /jforce
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 92df308c7a0c3d3c
+23 verbose url raw /jforce
+24 verbose url resolving [ 'https://registry.npmjs.org/', './jforce' ]
+25 verbose url resolved https://registry.npmjs.org/jforce
+26 verbose request where is https://registry.npmjs.org/jforce
+27 info trying registry request attempt 1 at 12:03:23
+28 http GET https://registry.npmjs.org/jforce
+29 http 404 https://registry.npmjs.org/jforce
+30 silly registry.get cb [ 404,
+30 silly registry.get   { 'content-type': 'application/json',
+30 silly registry.get     'cache-control': 'max-age=0',
+30 silly registry.get     'content-length': '2',
+30 silly registry.get     'accept-ranges': 'bytes',
+30 silly registry.get     date: 'Sat, 07 Nov 2015 20:03:20 GMT',
+30 silly registry.get     via: '1.1 varnish',
+30 silly registry.get     age: '0',
+30 silly registry.get     connection: 'keep-alive',
+30 silly registry.get     'x-served-by': 'cache-lax1435-LAX',
+30 silly registry.get     'x-cache': 'MISS',
+30 silly registry.get     'x-cache-hits': '0',
+30 silly registry.get     'x-timer': 'S1446926600.792697,VS0,VE79' } ]
+31 silly lockFile d77d3d9b-jforce jforce@
+32 silly lockFile d77d3d9b-jforce jforce@
+33 error 404 Not Found
+33 error 404
+33 error 404 'jforce' is not in the npm registry.
+33 error 404 You should bug the author to publish it
+33 error 404 It was specified as a dependency of 'westlakepioneers'
+33 error 404
+33 error 404 Note that you can also install from a
+33 error 404 tarball, folder, or http url, or git url.
+34 error System Windows_NT 6.2.9200
+35 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save" "jforce"
+36 error cwd C:\Users\Jack\WestlakePioneers
+37 error node -v v0.10.33
+38 error npm -v 1.4.28
+39 error code E404
+40 verbose exit [ 1, true ]

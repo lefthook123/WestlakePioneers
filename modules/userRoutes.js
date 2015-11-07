@@ -8,6 +8,9 @@ app.post('/admin/postuser',function(req,res){
 
     var reqBody=req.body;
     console.log(reqBody);
+    var email = reqBody.email
+
+
     var user = new User({
             email:reqBody.email,
             password:'Password',

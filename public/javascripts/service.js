@@ -171,12 +171,6 @@ angular.module('WPApp')
 	google.maps.event.addDomListener(window, 'load',googleMapService.refresh(selectedLat, selectedLong));
 	return googleMapService;
 }])
-.factory('CurrentUser',function(){
-	var user;
-	return{
-
-	};
-})
 .factory('AuthToken',function($window){
 	console.log('Entered AuthToken Factory');
 	var tokenKey = 'user-token';
@@ -193,7 +187,10 @@ angular.module('WPApp')
 		clearToken: clearToken,
 		getcurrentUserEmail: getcurrentUserEmail,
 		setcurrentUserEmail:setcurrentUserEmail,
-		clearcurrentUserEmail:clearcurrentUserEmail
+		clearcurrentUserEmail:clearcurrentUserEmail,
+		getcurrentUserCompany:getcurrentUserCompany,
+		setcurrentUserCompany:setcurrentUserCompany,
+		clearcurrentUserCompany:clearcurrentUserCompany
 	};
 	function getcurrentUserCompany(){
 		if(!cachedUserCompany){
@@ -202,8 +199,11 @@ angular.module('WPApp')
 		return cachedUserCompany;
 	}
 	function setcurrentUserCompany(user){
-		cachedUserCompany = user.company;
-		storage.setItem(companyKey,user.company);
+
+			cachedUserCompany = user.company;
+			storage.setItem(companyKey,user.company);
+		
+
 	}
     function clearcurrentUserCompany(){
     	cachedUserCompany=null;

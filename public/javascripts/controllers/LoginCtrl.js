@@ -14,10 +14,9 @@ angular.module('WPApp')
         $http.post('/authenticate',$scope.credential).then(function success(response){
             console.log(response.data.token);
             AuthToken.setToken(response.data.token);
-            AuthToken.setcurrentUser(response.data.user);
+            AuthToken.setcurrentUserEmail(response.data.user);
             $scope.currentuser = response.data.user;
-            $scope.alreadyLoggedIn = true;
-            console.log('success', 'Hey there!', 'Welcome ' + $scope.currentuser.email + '!');            
+            $scope.alreadyLoggedIn = true;            
             $scope.$close('loggedin');          
         },function error(response){
             $scope.message='Problem logging in! Sorry!';          

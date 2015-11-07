@@ -181,32 +181,46 @@ angular.module('WPApp')
 	console.log('Entered AuthToken Factory');
 	var tokenKey = 'user-token';
 	var emailKey = 'user-email';
+	var companyKey = 'user-company';
 	var storage = $window.localStorage;
 	var cachedToken;
-	var cachedUser;
+	var cachedUserEmail;
+	var cachedUserCompany;
 	return{
 		isAuthenticated: isAuthenticated,
 		setToken: setToken,
 		getToken: getToken,
 		clearToken: clearToken,
-		getcurrentUser: getcurrentUser,
-		setcurrentUser:setcurrentUser,
-		clearcurrentUser:clearcurrentUser
+		getcurrentUserEmail: getcurrentUserEmail,
+		setcurrentUserEmail:setcurrentUserEmail,
+		clearcurrentUserEmail:clearcurrentUserEmail
 	};
-	function getcurrentUser(){
-		if(!cachedUser){
-			cachedUser=storage.getItem(emailKey);
+	function getcurrentUserCompany(){
+		if(!cachedUserCompany){
+			cachedUserCompany=storage.getItem(companyKey);
 		}
-		return cachedUser;
+		return cachedUserCompany;
 	}
-	function setcurrentUser(user){
-		console.log('AuthToken set user: '+user.email);
-		cachedUser = user.email;
+	function setcurrentUserCompany(user){
+		cachedUserCompany = user.company;
+		storage.setItem(companyKey,user.company);
+	}
+    function clearcurrentUserCompany(){
+    	cachedUserCompany=null;
+    	storage.removeItem(companyKey);
+    }
+	function getcurrentUserEmail(){
+		if(!cachedUserEmail){
+			cachedUserEmail=storage.getItem(emailKey);
+		}
+		return cachedUserEmail;
+	}
+	function setcurrentUserEmail(user){
+		cachedUserEmail = user.email;
 		storage.setItem(emailKey,user.email);
 	}
-    function clearcurrentUser(){
-    	console.log('AuthToken clearcurrentUser: ');
-    	cachedUser=null;
+    function clearcurrentUserEmail(){
+    	cachedUserEmail=null;
     	storage.removeItem(emailKey);
     }
 	function setToken(token){

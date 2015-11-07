@@ -8,7 +8,7 @@ angular.module('WPApp')
     console.log('Entered mainController');
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
-    $scope.currentUser=AuthToken.getcurrentUser();
+    $scope.currentUser=AuthToken.getcurrentUserEmail();
     $scope.$watch(AuthToken.getcurrentUser,function(currentUser){
         $scope.currentUser = currentUser;
     });    

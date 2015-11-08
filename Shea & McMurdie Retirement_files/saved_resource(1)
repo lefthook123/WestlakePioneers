@@ -1,0 +1,10 @@
+if (window['google'] != undefined && window['google']['loader'] != undefined) {
+if (!window['google']['visualization']) {
+window['google']['visualization'] = {};
+google.visualization.Version = '1.0';
+google.visualization.JSHash = 'd90be93871e947a274f6a5157bd75fb0';
+google.visualization.LoadArgs = 'file\75visualization\46v\0751.0\46packages\75table\46sig\75d90be93871e947a274f6a5157bd75fb0\46have\75default%2Ccorechart%2Cui%2Cformat';
+}
+google.loader.writeLoadTag("css", google.loader.ServiceBase + "/api/visualization/1.0/d90be93871e947a274f6a5157bd75fb0/table+en.css", false);
+google.loader.writeLoadTag("script", google.loader.ServiceBase + "/api/visualization/1.0/d90be93871e947a274f6a5157bd75fb0/table+en.js", false);
+}

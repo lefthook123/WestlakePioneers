@@ -43,8 +43,9 @@ app.use(morgan('dev'));
 app.use(require('prerender-node').set('prerenderToken', 'JnRlGTVr2vqIe9LleEWv'));
 var blogRoutes = require('./modules/blogRoutes')(app);
 var userRoutes = require('./modules/userRoutes')(app);
-var userRoutes = require('./modules/teamRoutes')(app);
-var userRoutes = require('./modules/contactRoutes')(app);
+var teamRoutes = require('./modules/teamRoutes')(app);
+var contactRoutes = require('./modules/contactRoutes')(app);
+var sfdcRoutes = require('./modules/sfdcRoutes')(app);
 var ProjectGoogleMapRoutes = require('./modules/ProjectGoogleMapRoutes')(app);
 
 // =======================

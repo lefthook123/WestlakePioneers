@@ -8,14 +8,24 @@ angular.module('WPApp')
     console.log('Entered mainController');
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
-    $scope.currentUser=AuthToken.getcurrentUserEmail();
-    $scope.$watch(AuthToken.getcurrentUser,function(currentUser){
-        $scope.currentUser = currentUser;
+    $scope.currentUserEmail=AuthToken.getcurrentUserEmail();
+    $scope.currentUserCompany=AuthToken.getcurrentUserCompany();
+    $scope.$watch(AuthToken.getcurrentUserEmail,function(currentUserEmail){
+        console.log('watch email');
+        console.log(currentUserEmail);
+        $scope.currentUserEmail = currentUserEmail;
+    });
+    $scope.$watch(AuthToken.getcurrentUserCompany,function(currentUserCompany){
+        console.log('watch company');
+        console.log(currentUserCompany);
+        $scope.currentUserCompany = currentUserCompany;
     });    
     $scope.logout = function(){
         AuthToken.clearToken();
-        AuthToken.clearcurrentUser();
-        $scope.currentUser = null;
+        AuthToken.clearcurrentUserEmail();
+        AuthToken.clearcurrentUserCompany();
+        $scope.currentUserEmail = null;
+        $scope.currentUserCompany = null;
         $state.go('home',{});
     };
     var slides = $scope.slides = [

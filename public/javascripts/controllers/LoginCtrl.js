@@ -15,8 +15,10 @@ angular.module('WPApp')
             console.log(response.data.token);
             AuthToken.setToken(response.data.token);
             AuthToken.setcurrentUserEmail(response.data.user);
-            if(typeof response.data.company!=='undefined'&&response.data.company!==null){
-                AuthToken.setcurrentUserCompany(response.data.company);
+            if(typeof response.data.user.company!='undefined'&&response.data.user.company!==null){
+                console.log(response.data.user.company);
+                console.log(typeof response.data.user.company);
+                AuthToken.setcurrentUserCompany(response.data.user);
             }
             
             $scope.currentuser = response.data.user;

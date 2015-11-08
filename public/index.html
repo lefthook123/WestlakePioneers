@@ -36,15 +36,16 @@
 		                <li><a ui-sref="blogs" ui-sref-active="active"><i class="fa fa-book"></i>Blogs</a></li>
 		                <li><a ui-sref="projects" ui-sref-active="active"><i class="fa fa-wrench"></i>Projects</a></li>
 		                <li><a ui-sref="contact" ui-sref-active="active"><i class="fa fa-comment"></i> Contact</a></li>
-		                <li ng-hide="currentUser"><a ui-sref="login" ui-sref-active="active"><i class="fa fa-sign-in"></i>Sign In</a></li>
-		                <li ng-show="currentUser"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+		                <li ng-hide="currentUserEmail"><a ui-sref="login" ui-sref-active="active"><i class="fa fa-sign-in"></i>Sign In</a></li>
+		                <li ng-show="currentUserEmail"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>Sign Out</a></li>
 		            </ul>
 	            </div>
 			</div>
 		</div>
 		<div class="navbar navbar-inverse navbar-fixed-top" style="top:50px;height:30px">
 			<div class="pull-right">
-				<a ng-show="currentUser" class="navbar-brand" href="#">{{currentUser}}</a>
+				<a ng-show="currentUserCompany" class="navbar-brand" href="#">{{currentUserCompany}}</a>
+				<a ng-show="currentUserEmail" class="navbar-brand" href="#">{{currentUserEmail}}</a>
 				<a class="navbar-brand" ui-sref="admin-dashboard">My Dashboard</a>	
 			</div>
 		</div>

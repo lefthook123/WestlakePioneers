@@ -21,9 +21,9 @@
 					<td ng-show="editing"><input type="email" ng-model="usr.email"></td>
 					<td ng-hide="editing">{{usr.company}}</td>
 					<td ng-show="editing"><input type="text" ng-model="usr.company"></td>
-					<td ng-hide="editing"><input type="checkbox" checked="usr.admin" disabled></td>
+					<td ng-hide="editing"><input type="checkbox" ng-checked="usr.admin" disabled></td>
 					<td ng-show="editing"><input type="checkbox" ng-model="usr.admin"></td>
-					<td ng-hide="editing"><input type="checkbox" checked="usr.isactive" disabled></td>
+					<td ng-hide="editing"><input type="checkbox" ng-checked="usr.isactive" disabled></td>
 					<td ng-show="editing"><input type="checkbox" ng-model="usr.isactive"></td>
 					<td>{{usr.createddate| date:'medium'}}</td>
 					<td><button class="btn btn-warning" ng-hide="editing" ng-click="edit()">Edit</button></td>

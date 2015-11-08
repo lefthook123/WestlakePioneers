@@ -199,7 +199,7 @@ angular.module('WPApp')
 		return cachedUserCompany;
 	}
 	function setcurrentUserCompany(user){
-
+		console.log('setcurrentUserCompany: '+user.company);
 			cachedUserCompany = user.company;
 			storage.setItem(companyKey,user.company);
 		
